@@ -1,5 +1,7 @@
 #include "ActorComponent.h"
 
+IMPLEMENT_OBJECT(UActorComponent, UObject)
+
 void UActorComponent::BeginPlay()
 {
 	if (bAutoActivate)
