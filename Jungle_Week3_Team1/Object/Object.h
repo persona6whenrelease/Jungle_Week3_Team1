@@ -22,6 +22,7 @@ public:
 
 public:
 	uint32 UUID = { 0 };
+	bool bPendingKill = false;
 };
 
 extern TArray<UObject*> GUObjectArray;
