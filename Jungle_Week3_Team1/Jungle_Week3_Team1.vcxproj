@@ -104,6 +104,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -144,6 +145,7 @@
     <ClCompile Include="System\InputSystem.cpp" />
     <ClCompile Include="World\ActorComponent.cpp" />
     <ClCompile Include="World\Camera.cpp" />
+    <ClCompile Include="World\Mesh\Meshmanager.cpp" />
     <ClCompile Include="World\PrimitiveComponent.cpp" />
     <ClCompile Include="World\SceneComponent.cpp" />
   </ItemGroup>
@@ -166,6 +168,7 @@
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Object\ObjectBase.h" />
     <ClInclude Include="Render\Render.h" />
+    <ClInclude Include="Render\RenderTypes.h" />
     <ClInclude Include="Render\Sphere.h" />
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="Math\Frustum.h" />
@@ -189,8 +192,10 @@
     <ClInclude Include="Types\StaticArray.h" />
     <ClInclude Include="Types\String.h" />
     <ClInclude Include="Types\Class.h" />
+    <ClInclude Include="Types\VertexTypes.h" />
     <ClInclude Include="World\ActorComponent.h" />
     <ClInclude Include="World\Camera.h" />
+    <ClInclude Include="World\Mesh\MeshManager.h" />
     <ClInclude Include="World\PrimitiveComponent.h" />
     <ClInclude Include="World\SceneComponent.h" />
   </ItemGroup>
