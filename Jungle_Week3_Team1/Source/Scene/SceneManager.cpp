@@ -7,14 +7,17 @@ void SceneManager::SaveSceneFIle(const FString& InFileName, Scene* InAddress)
 
 	if (IT != SceneMap.end())
 	{
-		// 이미 존재하는 scene
+		// existing scene
 		Scene* OldScene = IT->second;
-		InAddress->OverWrite(OldScene);
+		OldScene->OverWrite(InAddress);
 
+		SaveSceneInfoToFile(InFileName, OldScene);
+		return;
 	}
 
-	// 이 filename에 InAddress의 정보를 저장해야함
+	// save filename of inaddress scene
 	SceneMap.insert({ InFileName , InAddress });
+	SaveSceneInfoToFile(InFileName, InAddress);
 
 }
 
@@ -24,7 +27,7 @@ Scene* SceneManager::LoadSceneFile(const FString& InFileName)
 	auto IT = SceneMap.find(InFileName);
 
 
-	// 못 찾는 경우
+	// nothing
 	if (IT == SceneMap.end())
 	{
 
@@ -41,22 +44,21 @@ void SceneManager::SaveSceneInfoToFile(const FString& InFileName, Scene* InAddre
 {
 	Json SaveFile = {};
 	SaveFile["Version"] = 1;
+	SaveFile["Primitives"] = {};
 
-	// 추후 수정
-	SaveFile["NextUUID"] = ;
-	SaveFile["Primitive"] = {};
 	const TMap<uint32, AActor*>& AActorMap = InAddress->GetAActorMap();
-	uint32 temp_uuid = 1;
+	int32 Index = 0;
 	for (const auto& IT : AActorMap)
 	{
-		Json Transform = {};
-		Transform["Location"] = { IT.second.getLocation() };
-		Transform["Rotateion"] = { IT.second.getRoation() };
-		Transform["Scale"] = { IT.second.getScale() };
-		Transform["Type"] = { IT.second.GetName() };
-		
-		SaveFile["Primitive"].insert(Transform);
+		Json Primitive = {};
+		Primitive["Location"] = { IT.second->getLocation() };
+		Primitive["Rotation"] = { IT.second->getRotation() }; // 오타 수정
+		Primitive["Scale"] = { IT.second->getScale() };
+		Primitive["Type"] = { IT.second->GetName() };
 
+		SaveFile["Primitives"][std::to_string(Index++)] = Primitive; // 수정
 	}
-	
+
+	std::ofstream File(InFileName);
+	File << SaveFile.dump(4);
 }

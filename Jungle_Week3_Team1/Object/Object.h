@@ -1,6 +1,7 @@
 #pragma once
 #include "../Types/Class.h"
 
+
 class UObject
 {
 public:
@@ -8,7 +9,7 @@ public:
 	virtual ~UObject() = default;
 
 public:
-	FString UUID = { 0 };
+	uint32 UUID = { 0 };
 };
 
 extern TArray<UObject*> GUObjectArray;

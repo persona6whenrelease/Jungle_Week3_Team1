@@ -35,11 +35,11 @@ void Scene::SpawnActor(const FString& InName)
 void Scene::OverWrite(Scene* InAddress)
 {
 
-	// 기존의 actor에 있는거 다 지우기
+	// delete all actor
 
 	for (auto& IT : AActorMap)
 	{
-		// 전에 있던 AActor 근데 남은 component들은 어떻게함?
+		// Todo Check
 		delete IT.second;
 	}
 
