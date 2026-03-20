@@ -28,7 +28,7 @@ public:
 		ActorComponent->Owner = this;
 		ActorComponent->InitializeComponent();
 
-		Components.PushBack(ActorComponent);
+		Components.push_back(ActorComponent);
 		return ActorComponent;
 	}
 
@@ -44,7 +44,7 @@ public:
 	{
 		static_assert(std::is_base_of_v<UActorComponent, T>, "T must derive from UActorComponent");
 
-		uint64 currentSize = Components.Size();
+		uint64 currentSize = Components.size();
 		for (uint64 i = 0; i < currentSize; ++i)
 		{
 			if (Components[i]->IsA(T::StaticClass()))
@@ -57,7 +57,7 @@ public:
 					Components[i] = Components[lastIndex];
 				}
 
-				Components.PopBack();
+				Components.pop_back();
 				
 				Removed->Owner = nullptr;
 				return true; 
@@ -92,7 +92,7 @@ public:
 	template<typename T>
 	T* GetComponentByClass()
 	{
-		for (uint32 i = 0; i < Components.Size(); ++i)
+		for (uint32 i = 0; i < Components.size(); ++i)
 		{
 			if (Components[i]->IsA(T::StaticClass()))
 			{
@@ -107,10 +107,10 @@ public:
 	TArray<T*> GetComponentArrayByClass()
 	{
 		TArray<T*> Result;
-		for (uint32 i = 0; i < Components.Size(); ++i)
+		for (uint32 i = 0; i < Components.size(); ++i)
 		{
 			if (Components[i]->IsA(T::StaticClass()))
-				Result.PushBack(static_cast<T*>(Components[i]));
+				Result.push_back(static_cast<T*>(Components[i]));
 		}
 		return Result;
 	}
