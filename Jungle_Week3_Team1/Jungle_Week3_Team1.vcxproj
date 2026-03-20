@@ -102,6 +102,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\jungle\source\repos\Jungle_Week3_Team1\Jungle_Week3_Team1\ImGui;C:\Users\jungle\source\repos\Jungle_Week3_Team1\Jungle_Week3_Team1\Object;C:\Users\jungle\source\repos\Jungle_Week3_Team1\Jungle_Week3_Team1\Render;C:\Users\jungle\source\repos\Jungle_Week3_Team1\Jungle_Week3_Team1\Source;C:\Users\jungle\source\repos\Jungle_Week3_Team1\Jungle_Week3_Team1\World;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -123,6 +125,64 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ImGui\imgui.cpp" />
+    <ClCompile Include="ImGui\imgui_demo.cpp" />
+    <ClCompile Include="ImGui\imgui_draw.cpp" />
+    <ClCompile Include="ImGui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="ImGui\imgui_impl_win32.cpp" />
+    <ClCompile Include="ImGui\imgui_tables.cpp" />
+    <ClCompile Include="ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Object\Object.cpp" />
+    <ClCompile Include="Source\Math\Frustum.cpp" />
+    <ClCompile Include="Source\Math\Matrix.cpp" />
+    <ClCompile Include="Source\Math\Quat.cpp" />
+    <ClCompile Include="Source\Math\Rotator.cpp" />
+    <ClCompile Include="Source\Math\Transform.cpp" />
+    <ClCompile Include="Source\Math\Vector.cpp" />
+    <ClCompile Include="World\ActorComponent.cpp" />
+    <ClCompile Include="World\PrimitiveComponent.cpp" />
+    <ClCompile Include="World\SceneComponent.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ShaderW0.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ImGui\imconfig.h" />
+    <ClInclude Include="ImGui\imgui.h" />
+    <ClInclude Include="ImGui\imgui_impl_dx11.h" />
+    <ClInclude Include="ImGui\imgui_impl_win32.h" />
+    <ClInclude Include="ImGui\imgui_internal.h" />
+    <ClInclude Include="ImGui\imstb_rectpack.h" />
+    <ClInclude Include="ImGui\imstb_textedit.h" />
+    <ClInclude Include="ImGui\imstb_truetype.h" />
+    <ClInclude Include="Object\Object.h" />
+    <ClInclude Include="Render\Render.h" />
+    <ClInclude Include="Render\Sphere.h" />
+    <ClInclude Include="Source\CoreMinimal.h" />
+    <ClInclude Include="Source\Math\Frustum.h" />
+    <ClInclude Include="Source\Math\MathUtility.h" />
+    <ClInclude Include="Source\Math\Matrix.h" />
+    <ClInclude Include="Source\Math\Quat.h" />
+    <ClInclude Include="Source\Math\Rotator.h" />
+    <ClInclude Include="Source\Math\Transform.h" />
+    <ClInclude Include="Source\Math\Vector.h" />
+    <ClInclude Include="Source\Math\Vector4.h" />
+    <ClInclude Include="Source\Types\Array.h" />
+    <ClInclude Include="Source\Types\CoreTypes.h" />
+    <ClInclude Include="Source\Types\LinkedList.h" />
+    <ClInclude Include="Source\Types\Map.h" />
+    <ClInclude Include="Source\Types\ObjectPtr.h" />
+    <ClInclude Include="Source\Types\Pair.h" />
+    <ClInclude Include="Source\Types\Queue.h" />
+    <ClInclude Include="Source\Types\Set.h" />
+    <ClInclude Include="Source\Types\StaticArray.h" />
+    <ClInclude Include="Source\Types\String.h" />
+    <ClInclude Include="World\ActorComponent.h" />
+    <ClInclude Include="World\PrimitiveComponent.h" />
+    <ClInclude Include="World\SceneComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

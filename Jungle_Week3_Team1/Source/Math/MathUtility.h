@@ -1,8 +1,6 @@
 #pragma once
 
-#include "EngineAPI.h"
-
-struct ENGINE_API FMath
+struct FMath
 {
 	static constexpr float PI           = 3.14159265358979323846f;
 	static constexpr float InvPI        = 0.31830988618379067154f;

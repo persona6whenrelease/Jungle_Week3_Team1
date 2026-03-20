@@ -1,20 +1,19 @@
 #pragma once
-#include "EngineAPI.h"
 #include "Types/Map.h"
 #include <cstdint>
 #include <type_traits>
 
 class UObject;
 
-// UUID -> UObject* ì—­ë°©í–¥ ì¡°íšŒ ë§µ (ObjectFactory.cppì—ì„œ ì •ì˜)
-extern ENGINE_API TMap<uint32_t, UObject*> GUUIDToObjectMap;
+// UUID -> UObject* ¿ª¹æÇâ Á¶È¸ ¸Ê (ObjectFactory.cpp¿¡¼­ Á¤ÀÇ)
+extern TMap<uint32_t, UObject*> GUUIDToObjectMap;
 
 // Forward-declaration-safe UUID extraction (defined in Object.cpp)
-// void*ë¥¼ ì‚¬ìš©í•˜ì—¬ Tê°€ ë¶ˆì™„ì „ íƒ€ì…ì´ì–´ë„ ë™ì‘
-ENGINE_API uint32_t ExtractUObjectUUID(const void* Ptr);
+// void*¸¦ »ç¿ëÇÏ¿© T°¡ ºÒ¿ÏÀü Å¸ÀÔÀÌ¾îµµ µ¿ÀÛ
+uint32_t ExtractUObjectUUID(const void* Ptr);
 
-// UUID ê¸°ë°˜ ê°„ì ‘ ì°¸ì¡° ìŠ¤ë§ˆíŠ¸ í¬ì¸í„°
-// GCì— ì˜í•´ raw pointerê°€ ë¬´íš¨í™”ë˜ì–´ë„ UUIDë¥¼ í†µí•´ ì•ˆì „í•˜ê²Œ ì ‘ê·¼ ê°€ëŠ¥
+// UUID ±â¹İ °£Á¢ ÂüÁ¶ ½º¸¶Æ® Æ÷ÀÎÅÍ
+// GC¿¡ ÀÇÇØ raw pointer°¡ ¹«È¿È­µÇ¾îµµ UUID¸¦ ÅëÇØ ¾ÈÀüÇÏ°Ô Á¢±Ù °¡´É
 template <typename T>
 class TObjectPtr
 {
@@ -40,7 +39,7 @@ public:
 		Other.CachedPtr = nullptr;
 	}
 
-	// ì—…ìºìŠ¤íŠ¸ ì§€ì›: TObjectPtr<Derived> -> TObjectPtr<Base>
+	// ¾÷Ä³½ºÆ® Áö¿ø: TObjectPtr<Derived> -> TObjectPtr<Base>
 	template <typename U, typename = std::enable_if_t<std::is_convertible_v<U*, T*>>>
 	TObjectPtr(const TObjectPtr<U>& Other)
 		: ObjectUUID(Other.GetUUID()), CachedPtr(Other.GetCachedPtr())
@@ -75,7 +74,7 @@ public:
 		return *this;
 	}
 
-	// ì—…ìºìŠ¤íŠ¸ ëŒ€ì…
+	// ¾÷Ä³½ºÆ® ´ëÀÔ
 	template <typename U, typename = std::enable_if_t<std::is_convertible_v<U*, T*>>>
 	TObjectPtr& operator=(const TObjectPtr<U>& Other)
 	{
@@ -84,9 +83,9 @@ public:
 		return *this;
 	}
 
-	// í•µì‹¬: UUID ê¸°ë°˜ ì•ˆì „í•œ í¬ì¸í„° ë°˜í™˜
-	// UUID ë§µì„ í†µí•´ ê²€ì¦ í›„ CachedPtr ë°˜í™˜ (deleteëœ ê°ì²´ ì ‘ê·¼ ë°©ì§€)
-	// Tê°€ ë¶ˆì™„ì „ íƒ€ì…ì´ì–´ë„ ë™ì‘ (static_cast ë¶ˆí•„ìš”)
+	// ÇÙ½É: UUID ±â¹İ ¾ÈÀüÇÑ Æ÷ÀÎÅÍ ¹İÈ¯
+	// UUID ¸ÊÀ» ÅëÇØ °ËÁõ ÈÄ CachedPtr ¹İÈ¯ (deleteµÈ °´Ã¼ Á¢±Ù ¹æÁö)
+	// T°¡ ºÒ¿ÏÀü Å¸ÀÔÀÌ¾îµµ µ¿ÀÛ (static_cast ºÒÇÊ¿ä)
 	T* Get() const
 	{
 		if (ObjectUUID == 0)
@@ -108,15 +107,15 @@ public:
 			return nullptr;
 		}
 
-		// UUID ë§µìœ¼ë¡œ ê°ì²´ ìƒì¡´ í™•ì¸ ì™„ë£Œ. CachedPtrì€ ìƒì„±/ëŒ€ì… ì‹œ ì˜¬ë°”ë¥´ê²Œ ì„¤ì •ë¨.
-		// ë‹¨ì¡° ì¦ê°€ UUIDì´ë¯€ë¡œ ì¬ì‚¬ìš© ì—†ìŒ â†’ CachedPtrì€ í•­ìƒ ìœ íš¨.
+		// UUID ¸ÊÀ¸·Î °´Ã¼ »ıÁ¸ È®ÀÎ ¿Ï·á. CachedPtrÀº »ı¼º/´ëÀÔ ½Ã ¿Ã¹Ù¸£°Ô ¼³Á¤µÊ.
+		// ´ÜÁ¶ Áõ°¡ UUIDÀÌ¹Ç·Î Àç»ç¿ë ¾øÀ½ ¡æ CachedPtrÀº Ç×»ó À¯È¿.
 		return CachedPtr;
 	}
 
 	T* operator->() const { return Get(); }
 	T& operator*() const { return *Get(); }
 
-	// raw pointerë¡œ ì•”ì‹œì  ë³€í™˜ â€” ë¹„êµ ì—°ì‚°ë„ ì´ ë³€í™˜ì„ í†µí•´ ì²˜ë¦¬ë¨
+	// raw pointer·Î ¾Ï½ÃÀû º¯È¯ ? ºñ±³ ¿¬»êµµ ÀÌ º¯È¯À» ÅëÇØ Ã³¸®µÊ
 	operator T*() const { return Get(); }
 
 	explicit operator bool() const { return Get() != nullptr; }

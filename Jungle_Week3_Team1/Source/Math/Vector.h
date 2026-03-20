@@ -2,10 +2,9 @@
 
 #include <cassert>
 #include <cmath>
-#include "EngineAPI.h"
 #include "Types/CoreTypes.h"
 
-struct ENGINE_API FVector
+struct FVector
 {
 public:
 	union
@@ -183,20 +182,20 @@ public:
 	//				  method				//
 	//======================================//
 public:
-	// í˜„ì¬ ë²¡í„°ë¥¼ DirectX::XMFLOAT3 í˜•ì‹ìœ¼ë¡œ ë³€í™˜í•¨
+	// ÇöÀç º¤ÅÍ¸¦ DirectX::XMFLOAT3 Çü½ÄÀ¸·Î º¯È¯ÇÔ
 	Float3 ToXMFLOAT3() const noexcept
 	{
 		return DirectX::XMFLOAT3(X, Y, Z);
 	}
 
-	// í˜„ì¬ ë²¡í„°ë¥¼ DirectX::XMVECTOR í˜•ì‹ìœ¼ë¡œ ë³€í™˜í•¨
-	// W ì„±ë¶„ì€ ê¸°ë³¸ê°’ 0.fë¥¼ ì‚¬ìš©í•˜ë©° í•„ìš” ì‹œ ì§€ì •í•  ìˆ˜ ìˆìŒ
+	// ÇöÀç º¤ÅÍ¸¦ DirectX::XMVECTOR Çü½ÄÀ¸·Î º¯È¯ÇÔ
+	// W ¼ººĞÀº ±âº»°ª 0.f¸¦ »ç¿ëÇÏ¸ç ÇÊ¿ä ½Ã ÁöÁ¤ÇÒ ¼ö ÀÖÀ½
 	XMVector ToXMVector(float W = 0.f) const noexcept
 	{
 		return DirectX::XMVectorSet(X, Y, Z, W);
 	}
 
-	// í—ˆìš© ì˜¤ì°¨(Tolerance) ë²”ìœ„ ë‚´ì—ì„œ ë‘ ë²¡í„°ê°€ ê°™ì€ì§€ ë¹„êµí•¨
+	// Çã¿ë ¿ÀÂ÷(Tolerance) ¹üÀ§ ³»¿¡¼­ µÎ º¤ÅÍ°¡ °°ÀºÁö ºñ±³ÇÔ
 	bool Equals(const FVector& V, float Tolerance = 1.e-6f) const noexcept
 	{
 		return DirectX::XMVector3NearEqual(
@@ -205,13 +204,13 @@ public:
 			DirectX::XMVectorReplicate(Tolerance));
 	}
 
-	// ëª¨ë“  ì„±ë¶„ì´ ì •í™•íˆ 0ì¸ì§€ í™•ì¸í•¨
+	// ¸ğµç ¼ººĞÀÌ Á¤È®È÷ 0ÀÎÁö È®ÀÎÇÔ
 	bool IsZero() const noexcept
 	{
 		return X == 0.f && Y == 0.f && Z == 0.f;
 	}
 
-	// ëª¨ë“  ì„±ë¶„ì´ í—ˆìš© ì˜¤ì°¨(Tolerance) ì´í•˜ì¸ì§€ í™•ì¸í•¨
+	// ¸ğµç ¼ººĞÀÌ Çã¿ë ¿ÀÂ÷(Tolerance) ÀÌÇÏÀÎÁö È®ÀÎÇÔ
 	bool IsNearlyZero(float Tolerance = 1.e-6f) const noexcept
 	{
 		return DirectX::XMVector3NearEqual(
@@ -220,33 +219,33 @@ public:
 			DirectX::XMVectorReplicate(Tolerance));
 	}
 
-	// ë²¡í„° ê¸¸ì´ì˜ ì œê³± ê°’ì„ êµ¬í•¨
-	// ì œê³±ê·¼ ì—°ì‚°ì´ ì—†ì–´ì„œ Size()ë³´ë‹¤ ë¹ ë¦„
+	// º¤ÅÍ ±æÀÌÀÇ Á¦°ö °ªÀ» ±¸ÇÔ
+	// Á¦°ö±Ù ¿¬»êÀÌ ¾ø¾î¼­ Size()º¸´Ù ºü¸§
 	float SizeSquared() const noexcept
 	{
 		return DirectX::XMVectorGetX(DirectX::XMVector3LengthSq(ToXMVector()));
 	}
 
-	// ë²¡í„°ì˜ ê¸¸ì´(í¬ê¸°)ë¥¼ êµ¬í•¨
+	// º¤ÅÍÀÇ ±æÀÌ(Å©±â)¸¦ ±¸ÇÔ
 	float Size() const noexcept
 	{
 		return DirectX::XMVectorGetX(DirectX::XMVector3Length(ToXMVector()));
 	}
 
-	// XY í‰ë©´ì—ì„œì˜ ë²¡í„° ê¸¸ì´ ì œê³± ê°’ì„ êµ¬í•¨
+	// XY Æò¸é¿¡¼­ÀÇ º¤ÅÍ ±æÀÌ Á¦°ö °ªÀ» ±¸ÇÔ
 	float SizeSquared2D() const noexcept
 	{
 		return DirectX::XMVectorGetX(DirectX::XMVector2LengthSq(ToXMVector()));
 	}
 
-	// XY í‰ë©´ì—ì„œì˜ ë²¡í„° ê¸¸ì´(í¬ê¸°)ë¥¼ êµ¬í•¨
+	// XY Æò¸é¿¡¼­ÀÇ º¤ÅÍ ±æÀÌ(Å©±â)¸¦ ±¸ÇÔ
 	float Size2D() const noexcept
 	{
 		return DirectX::XMVectorGetX(DirectX::XMVector2Length(ToXMVector()));
 	}
 
-	// í˜„ì¬ ë²¡í„°ë¥¼ ì •ê·œí™”í•¨
-	// ê¸¸ì´ê°€ ë„ˆë¬´ ì‘ìœ¼ë©´ ì˜ë²¡í„°ë¡œ ë§Œë“¤ê³  falseë¥¼ ë°˜í™˜í•¨
+	// ÇöÀç º¤ÅÍ¸¦ Á¤±ÔÈ­ÇÔ
+	// ±æÀÌ°¡ ³Ê¹« ÀÛÀ¸¸é ¿µº¤ÅÍ·Î ¸¸µé°í false¸¦ ¹İÈ¯ÇÔ
 	bool Normalize(float Tolerance = 1.e-8f) noexcept
 	{
 		const XMVector Vector = ToXMVector();
@@ -263,8 +262,8 @@ public:
 		return false;
 	}
 
-	// ì •ê·œí™”ëœ ë²¡í„°ë¥¼ ë°˜í™˜í•¨
-	// ê¸¸ì´ê°€ ë„ˆë¬´ ì‘ìœ¼ë©´ ZeroVectorë¥¼ ë°˜í™˜í•¨
+	// Á¤±ÔÈ­µÈ º¤ÅÍ¸¦ ¹İÈ¯ÇÔ
+	// ±æÀÌ°¡ ³Ê¹« ÀÛÀ¸¸é ZeroVector¸¦ ¹İÈ¯ÇÔ
 	FVector GetSafeNormal(float Tolerance = 1.e-8f) const noexcept
 	{
 		const XMVector Vector = ToXMVector();
@@ -277,8 +276,8 @@ public:
 		return ZeroVector;
 	}
 
-	// XY í‰ë©´ ê¸°ì¤€ìœ¼ë¡œ ì •ê·œí™”ëœ ë²¡í„°ë¥¼ ë°˜í™˜í•¨
-	// ZëŠ” 0ìœ¼ë¡œ ì„¤ì •ë˜ë©° ê¸¸ì´ê°€ ë„ˆë¬´ ì‘ìœ¼ë©´ ZeroVectorë¥¼ ë°˜í™˜í•¨
+	// XY Æò¸é ±âÁØÀ¸·Î Á¤±ÔÈ­µÈ º¤ÅÍ¸¦ ¹İÈ¯ÇÔ
+	// Z´Â 0À¸·Î ¼³Á¤µÇ¸ç ±æÀÌ°¡ ³Ê¹« ÀÛÀ¸¸é ZeroVector¸¦ ¹İÈ¯ÇÔ
 	FVector GetSafeNormal2D(float Tolerance = 1.e-8f) const noexcept
 	{
 		const XMVector Vector = ToXMVector();
@@ -296,27 +295,27 @@ public:
 	}
 
 public:
-	// ë‘ ë²¡í„°ì˜ ë‚´ì (Dot Product)ì„ êµ¬í•¨
+	// µÎ º¤ÅÍÀÇ ³»Àû(Dot Product)À» ±¸ÇÔ
 	static float DotProduct(const FVector& A, const FVector& B) noexcept
 	{
 		return DirectX::XMVectorGetX(DirectX::XMVector3Dot(A.ToXMVector(), B.ToXMVector()));
 	}
 
-	// ë‘ ë²¡í„°ì˜ ì™¸ì (Cross Product)ì„ êµ¬í•¨
+	// µÎ º¤ÅÍÀÇ ¿ÜÀû(Cross Product)À» ±¸ÇÔ
 	static FVector CrossProduct(const FVector& A, const FVector& B) noexcept
 	{
 		return FVector(DirectX::XMVector3Cross(A.ToXMVector(), B.ToXMVector()));
 	}
 
-	// ë‘ ë²¡í„° ì‚¬ì´ ê±°ë¦¬ì˜ ì œê³± ê°’ì„ êµ¬í•¨
-	// ê±°ë¦¬ ë¹„êµë§Œ í•„ìš”í•  ë•Œ Dist()ë³´ë‹¤ íš¨ìœ¨ì ì„
+	// µÎ º¤ÅÍ »çÀÌ °Å¸®ÀÇ Á¦°ö °ªÀ» ±¸ÇÔ
+	// °Å¸® ºñ±³¸¸ ÇÊ¿äÇÒ ¶§ Dist()º¸´Ù È¿À²ÀûÀÓ
 	static float DistSquared(const FVector& A, const FVector& B) noexcept
 	{
 		const XMVector Delta = DirectX::XMVectorSubtract(A.ToXMVector(), B.ToXMVector());
 		return DirectX::XMVectorGetX(DirectX::XMVector3LengthSq(Delta));
 	}
 
-	// ë‘ ë²¡í„°ì˜ ê±°ë¦¬ë¥¼ êµ¬í•¨
+	// µÎ º¤ÅÍÀÇ °Å¸®¸¦ ±¸ÇÔ
 	static float Dist(const FVector& A, const FVector& B) noexcept
 	{
 		const XMVector Delta = DirectX::XMVectorSubtract(A.ToXMVector(), B.ToXMVector());

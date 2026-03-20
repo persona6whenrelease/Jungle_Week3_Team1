@@ -1,11 +1,9 @@
 #pragma once
-
-#include "EngineAPI.h"
 #include "Math/Vector.h"
 
 struct FQuat;
 
-struct ENGINE_API FRotator
+struct FRotator
 {
 	float Pitch = 0.0f;
 	float Yaw = 0.0f;
@@ -22,11 +20,11 @@ struct ENGINE_API FRotator
 
 	explicit FRotator(const FQuat& InQuat) noexcept;
 
-	// ê°ë„ë¥¼ [0, 360) ë²”ìœ„ë¡œ ê°ìŒ‰ë‹ˆë‹¤.
+	// °¢µµ¸¦ [0, 360) ¹üÀ§·Î °¨½Ô´Ï´Ù.
 	static float ClampAxis(float AngleDegrees) noexcept;
-	// ê°ë„ë¥¼ (-180, 180] ë²”ìœ„ë¡œ ì •ê·œí™”í•©ë‹ˆë‹¤.
+	// °¢µµ¸¦ (-180, 180] ¹üÀ§·Î Á¤±ÔÈ­ÇÕ´Ï´Ù.
 	static float NormalizeAxis(float AngleDegrees) noexcept;
-	// ì—”ì§„ ì˜¤ì¼ëŸ¬ ê°ë„ {Roll, Pitch, Yaw}ë¡œë¶€í„° ë¡œí…Œì´í„°ë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
+	// ¿£Áø ¿ÀÀÏ·¯ °¢µµ {Roll, Pitch, Yaw}·ÎºÎÅÍ ·ÎÅ×ÀÌÅÍ¸¦ »ý¼ºÇÕ´Ï´Ù.
 	static FRotator MakeFromEuler(const FVector& InEulerDegrees) noexcept;
 
 	bool operator==(const FRotator& Other) const noexcept;
@@ -42,40 +40,40 @@ struct ENGINE_API FRotator
 	FRotator& operator*=(float Scale) noexcept;
 	FRotator& operator/=(float Scale) noexcept;
 
-	// ì´ ë¡œí…Œì´í„°ë¥¼ ì—”ì§„ ì˜¤ì¼ëŸ¬ ê°ë„ {Roll, Pitch, Yaw}ë¡œ ë°˜í™˜í•©ë‹ˆë‹¤.
+	// ÀÌ ·ÎÅ×ÀÌÅÍ¸¦ ¿£Áø ¿ÀÀÏ·¯ °¢µµ {Roll, Pitch, Yaw}·Î ¹ÝÈ¯ÇÕ´Ï´Ù.
 	FVector Euler() const noexcept;
-	// ì´ ë¡œí…Œì´í„°ê°€ ë°”ë¼ë³´ëŠ” ì „ë°© ë²¡í„°(+X)ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+	// ÀÌ ·ÎÅ×ÀÌÅÍ°¡ ¹Ù¶óº¸´Â Àü¹æ º¤ÅÍ(+X)¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
 	FVector Vector() const noexcept;
-	// ì´ ë¡œí…Œì´í„° íšŒì „ì„ ë²¡í„°ì— ì ìš©í•©ë‹ˆë‹¤.
+	// ÀÌ ·ÎÅ×ÀÌÅÍ È¸ÀüÀ» º¤ÅÍ¿¡ Àû¿ëÇÕ´Ï´Ù.
 	FVector RotateVector(const FVector& InVector) const noexcept;
-	// ì´ ë¡œí…Œì´í„°ì˜ ì—­íšŒì „ì„ ë²¡í„°ì— ì ìš©í•©ë‹ˆë‹¤.
+	// ÀÌ ·ÎÅ×ÀÌÅÍÀÇ ¿ªÈ¸ÀüÀ» º¤ÅÍ¿¡ Àû¿ëÇÕ´Ï´Ù.
 	FVector UnrotateVector(const FVector& InVector) const noexcept;
-	// Pitch, Yaw, Rollì— ë¸íƒ€ ê°’ì„ ë”í•˜ê³  ê²°ê³¼ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+	// Pitch, Yaw, Roll¿¡ µ¨Å¸ °ªÀ» ´õÇÏ°í °á°ú¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
 	FRotator Add(float DeltaPitch, float DeltaYaw, float DeltaRoll) noexcept;
-	// ì„±ë¶„ ì¤‘ í•˜ë‚˜ë¼ë„ NaN ë˜ëŠ” ë¬´í•œëŒ€ì´ë©´ trueë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+	// ¼ººÐ Áß ÇÏ³ª¶óµµ NaN ¶Ç´Â ¹«ÇÑ´ëÀÌ¸é true¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
 	bool ContainsNaN() const noexcept;
-	// ì •ê·œí™” ê¸°ì¤€ìœ¼ë¡œ ëª¨ë“  ê°ë„ê°€ ì •í™•ížˆ 0ì´ë©´ trueë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+	// Á¤±ÔÈ­ ±âÁØÀ¸·Î ¸ðµç °¢µµ°¡ Á¤È®È÷ 0ÀÌ¸é true¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
 	bool IsZero() const noexcept;
-	// í—ˆìš© ì˜¤ì°¨ ë‚´ì—ì„œ ë‹¤ë¥¸ ë¡œí…Œì´í„°ì™€ ê°™ì€ íšŒì „ì¸ì§€ ë¹„êµí•©ë‹ˆë‹¤.
+	// Çã¿ë ¿ÀÂ÷ ³»¿¡¼­ ´Ù¸¥ ·ÎÅ×ÀÌÅÍ¿Í °°Àº È¸ÀüÀÎÁö ºñ±³ÇÕ´Ï´Ù.
 	bool Equals(const FRotator& Other, float Tolerance = 1.e-6f) const noexcept;
-	// í—ˆìš© ì˜¤ì°¨ ë‚´ì—ì„œ í•­ë“± íšŒì „ì— ê°€ê¹Œìš´ì§€ ë°˜í™˜í•©ë‹ˆë‹¤.
+	// Çã¿ë ¿ÀÂ÷ ³»¿¡¼­ Ç×µî È¸Àü¿¡ °¡±î¿îÁö ¹ÝÈ¯ÇÕ´Ï´Ù.
 	bool IsNearlyZero(float Tolerance = 1.e-6f) const noexcept;
-	// ë‹¤ë¥¸ ë¡œí…Œì´í„°ì™€ì˜ ì¶•ë³„ ê°ë„ ì°¨ì´ ì ˆëŒ“ê°’ í•©ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+	// ´Ù¸¥ ·ÎÅ×ÀÌÅÍ¿ÍÀÇ Ãàº° °¢µµ Â÷ÀÌ Àý´ñ°ª ÇÕÀ» ¹ÝÈ¯ÇÕ´Ï´Ù.
 	float GetManhattanDistance(const FRotator& Other) const noexcept;
-	// ì „ë‹¬ëœ ë¡œí…Œì´í„°ë¥¼ í˜„ìž¬ ë¡œí…Œì´í„°ì— ê°€ìž¥ ê°€ê¹Œìš´ ê°ë„ í‘œí˜„ìœ¼ë¡œ ë§žì¶¥ë‹ˆë‹¤.
+	// Àü´ÞµÈ ·ÎÅ×ÀÌÅÍ¸¦ ÇöÀç ·ÎÅ×ÀÌÅÍ¿¡ °¡Àå °¡±î¿î °¢µµ Ç¥ÇöÀ¸·Î ¸ÂÃä´Ï´Ù.
 	void SetClosestToMe(FRotator& MakeClosest) const noexcept;
-	// ê° ì„±ë¶„ì„ [0, 360) ë²”ìœ„ë¡œ ë³´ì •í•©ë‹ˆë‹¤.
+	// °¢ ¼ººÐÀ» [0, 360) ¹üÀ§·Î º¸Á¤ÇÕ´Ï´Ù.
 	void Clamp() noexcept;
-	// ê° ì„±ë¶„ì„ (-180, 180] ë²”ìœ„ë¡œ ì •ê·œí™”í•©ë‹ˆë‹¤.
+	// °¢ ¼ººÐÀ» (-180, 180] ¹üÀ§·Î Á¤±ÔÈ­ÇÕ´Ï´Ù.
 	void Normalize() noexcept;
-	// ê° ì„±ë¶„ì„ [0, 360) ë²”ìœ„ë¡œ ë³´ì •í•œ ë³µì‚¬ë³¸ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+	// °¢ ¼ººÐÀ» [0, 360) ¹üÀ§·Î º¸Á¤ÇÑ º¹»çº»À» ¹ÝÈ¯ÇÕ´Ï´Ù.
 	FRotator GetDenormalized() const noexcept;
-	// ê° ì„±ë¶„ì„ (-180, 180] ë²”ìœ„ë¡œ ì •ê·œí™”í•œ ë³µì‚¬ë³¸ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+	// °¢ ¼ººÐÀ» (-180, 180] ¹üÀ§·Î Á¤±ÔÈ­ÇÑ º¹»çº»À» ¹ÝÈ¯ÇÕ´Ï´Ù.
 	FRotator GetNormalized() const noexcept;
-	// ì´ ë¡œí…Œì´í„°ì˜ ì—­íšŒì „ì„ ë‚˜íƒ€ë‚´ëŠ” ë¡œí…Œì´í„°ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+	// ÀÌ ·ÎÅ×ÀÌÅÍÀÇ ¿ªÈ¸ÀüÀ» ³ªÅ¸³»´Â ·ÎÅ×ÀÌÅÍ¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
 	FRotator GetInverse() const noexcept;
 
-	// ì´ ë¡œí…Œì´í„°ë¥¼ ëŒ€ì‘í•˜ëŠ” ì¿¼í„°ë‹ˆì–¸ìœ¼ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
+	// ÀÌ ·ÎÅ×ÀÌÅÍ¸¦ ´ëÀÀÇÏ´Â ÄõÅÍ´Ï¾ðÀ¸·Î º¯È¯ÇÕ´Ï´Ù.
 	FQuat Quaternion() const noexcept;
 };
 

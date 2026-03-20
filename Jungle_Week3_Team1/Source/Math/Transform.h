@@ -1,10 +1,8 @@
 #pragma once
-
-#include "EngineAPI.h"
 #include "Math/Quat.h"
 #include "Math/Rotator.h"
 
-struct ENGINE_API FTransform
+struct FTransform
 {
 public:
 	static const FTransform Identity;

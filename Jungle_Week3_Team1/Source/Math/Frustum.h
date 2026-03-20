@@ -30,7 +30,7 @@ struct FBoundingSphere
 	float Radius;
 };
 
-class ENGINE_API FFrustum
+class FFrustum
 {
 public:
 	enum { Left = 0, Right, Bottom, Top, Near, Far, PlaneCount };

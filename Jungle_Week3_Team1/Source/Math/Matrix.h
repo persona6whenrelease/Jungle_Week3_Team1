@@ -1,6 +1,4 @@
 #pragma once
-
-#include "EngineAPI.h"
 #include "Math/Vector.h"
 #include "Math/Vector4.h"
 
@@ -9,7 +7,7 @@ enum class EAxis : uint8_t
 	X, Y, Z
 };
 
-struct ENGINE_API FMatrix
+struct FMatrix
 {
 public:
 	alignas(16) float M[4][4];
@@ -80,8 +78,8 @@ public:
 		return M[Row];
 	}
 
-	// operator==ëŠ” ë¶€ë™ì†Œìˆ˜ì  ì •í™• ë¹„êµì…ë‹ˆë‹¤.
-	// ê³„ì‚° ê²°ê³¼ ë¹„êµì—ëŠ” Equals(Tolerance)ë¥¼ ì‚¬ìš©í•˜ëŠ” ê²ƒì„ ê¶Œì¥í•©ë‹ˆë‹¤.
+	// operator==´Â ºÎµ¿¼Ò¼öÁ¡ Á¤È® ºñ±³ÀÔ´Ï´Ù.
+	// °è»ê °á°ú ºñ±³¿¡´Â Equals(Tolerance)¸¦ »ç¿ëÇÏ´Â °ÍÀ» ±ÇÀåÇÕ´Ï´Ù.
 	bool operator==(const FMatrix& Other) const noexcept
 	{
 		for (int32 Row = 0; Row < 4; ++Row)
@@ -240,7 +238,7 @@ public:
 		);
 	}
 
-	// ë‘ í–‰ë ¬ì´ í—ˆìš© ì˜¤ì°¨(Tolerance) ë²”ìœ„ ë‚´ì—ì„œ ê°™ì€ì§€ ë¹„êµí•¨
+	// µÎ Çà·ÄÀÌ Çã¿ë ¿ÀÂ÷(Tolerance) ¹üÀ§ ³»¿¡¼­ °°ÀºÁö ºñ±³ÇÔ
 	bool Equals(const FMatrix& Other, float Tolerance = 1.e-6f) const noexcept
 	{
 		const XMVector ToleranceVector = DirectX::XMVectorReplicate(Tolerance);
@@ -256,33 +254,33 @@ public:
 		return true;
 	}
 
-	// ì „ì¹˜ í–‰ë ¬(Transpose Matrix)ì„ ë°˜í™˜í•¨
+	// ÀüÄ¡ Çà·Ä(Transpose Matrix)À» ¹İÈ¯ÇÔ
 	FMatrix GetTransposed() const noexcept
 	{
 		return FMatrix(DirectX::XMMatrixTranspose(ToXMMatrix()));
 	}
 
-	// ë°©í–¥ ë²¡í„°ë¥¼ í˜„ì¬ í–‰ë ¬ë¡œ ë³€í™˜í•¨
-	// ì´ë™(Translation)ì€ ì ìš©í•˜ì§€ ì•ŠìŒ
+	// ¹æÇâ º¤ÅÍ¸¦ ÇöÀç Çà·Ä·Î º¯È¯ÇÔ
+	// ÀÌµ¿(Translation)Àº Àû¿ëÇÏÁö ¾ÊÀ½
 	FVector TransformVector(const FVector& V) const noexcept
 	{
 		return FVector(DirectX::XMVector3TransformNormal(V.ToXMVector(), ToXMMatrix()));
 	}
 
-	// ìœ„ì¹˜ ë²¡í„°ë¥¼ í˜„ì¬ í–‰ë ¬ë¡œ ë³€í™˜í•¨
-	// ì´ë™(Translation)ì„ í¬í•¨í•˜ì—¬ ì ìš©í•¨
+	// À§Ä¡ º¤ÅÍ¸¦ ÇöÀç Çà·Ä·Î º¯È¯ÇÔ
+	// ÀÌµ¿(Translation)À» Æ÷ÇÔÇÏ¿© Àû¿ëÇÔ
 	FVector TransformPosition(const FVector& V) const noexcept
 	{
 		return FVector(DirectX::XMVector3TransformCoord(V.ToXMVector(), ToXMMatrix()));
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì˜ ì´ë™(Translation) ì„±ë¶„ì„ ë°˜í™˜í•¨
+	// ÇöÀç Çà·ÄÀÇ ÀÌµ¿(Translation) ¼ººĞÀ» ¹İÈ¯ÇÔ
 	FVector GetOrigin() const noexcept
 	{
 		return FVector(M[3][0], M[3][1], M[3][2]);
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì˜ ì´ë™(Translation) ì„±ë¶„ì„ ì„¤ì •í•¨
+	// ÇöÀç Çà·ÄÀÇ ÀÌµ¿(Translation) ¼ººĞÀ» ¼³Á¤ÇÔ
 	void SetOrigin(const FVector& Origin) noexcept
 	{
 		M[3][0] = Origin.X;
@@ -290,7 +288,7 @@ public:
 		M[3][2] = Origin.Z;
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì—ì„œ ìŠ¤ì¼€ì¼ì´ í¬í•¨ëœ ì¶• ë²¡í„°ë¥¼ ë°˜í™˜í•¨
+	// ÇöÀç Çà·Ä¿¡¼­ ½ºÄÉÀÏÀÌ Æ÷ÇÔµÈ Ãà º¤ÅÍ¸¦ ¹İÈ¯ÇÔ
 	FVector GetScaledAxis(EAxis Axis) const noexcept
 	{
 		switch (Axis)
@@ -306,13 +304,13 @@ public:
 		}
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì—ì„œ ì •ê·œí™”ëœ ì¶• ë²¡í„°ë¥¼ ë°˜í™˜í•¨
+	// ÇöÀç Çà·Ä¿¡¼­ Á¤±ÔÈ­µÈ Ãà º¤ÅÍ¸¦ ¹İÈ¯ÇÔ
 	FVector GetUnitAxis(EAxis Axis) const noexcept
 	{
 		return GetScaledAxis(Axis).GetSafeNormal();
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì—ì„œ ì´ë™(Translation) ì„±ë¶„ì„ ì œê±°í•¨
+	// ÇöÀç Çà·Ä¿¡¼­ ÀÌµ¿(Translation) ¼ººĞÀ» Á¦°ÅÇÔ
 	void RemoveTranslation() noexcept
 	{
 		M[3][0] = 0.f;
@@ -320,7 +318,7 @@ public:
 		M[3][2] = 0.f;
 	}
 
-	// ì´ë™(Translation) ì„±ë¶„ì´ ì œê±°ëœ ìƒˆ í–‰ë ¬ì„ ë°˜í™˜í•¨
+	// ÀÌµ¿(Translation) ¼ººĞÀÌ Á¦°ÅµÈ »õ Çà·ÄÀ» ¹İÈ¯ÇÔ
 	FMatrix GetMatrixWithoutTranslation() const noexcept
 	{
 		FMatrix Result = *this;
@@ -328,7 +326,7 @@ public:
 		return Result;
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì—ì„œ ìŠ¤ì¼€ì¼ì„ ì œê±°í•œ ìƒˆ í–‰ë ¬ì„ ë°˜í™˜í•¨
+	// ÇöÀç Çà·Ä¿¡¼­ ½ºÄÉÀÏÀ» Á¦°ÅÇÑ »õ Çà·ÄÀ» ¹İÈ¯ÇÔ
 	FMatrix GetMatrixWithoutScale(float Tolerance = 1.e-8f) const noexcept
 	{
 		const FVector XAxis = GetScaledAxis(EAxis::X).GetSafeNormal(Tolerance);
@@ -343,7 +341,7 @@ public:
 		return Result;
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì— í¬í•¨ëœ ìŠ¤ì¼€ì¼ ê°’ì„ ë°˜í™˜í•¨
+	// ÇöÀç Çà·Ä¿¡ Æ÷ÇÔµÈ ½ºÄÉÀÏ °ªÀ» ¹İÈ¯ÇÔ
 	FVector GetScaleVector() const noexcept
 	{
 		const XMVector XAxis = DirectX::XMVectorSet(M[0][0], M[0][1], M[0][2], 0.0f);
@@ -357,16 +355,16 @@ public:
 		);
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì´ Identity Matrixì™€ ê°™ì€ì§€ í™•ì¸í•¨
+	// ÇöÀç Çà·ÄÀÌ Identity Matrix¿Í °°ÀºÁö È®ÀÎÇÔ
 	bool IsIdentity(float Tolerance = 1.e-6f) const noexcept
 	{
 		return Equals(Identity, Tolerance);
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì˜ í–‰ë ¬ì‹(Determinant)ì„ êµ¬í•¨
-	// Determinantê°€ 0ì´ë©´ ì—­í–‰ë ¬  ì—†ìŒ
-	// 0ì— ë§¤ìš° ê°€ê¹Œìš°ë©´ ìˆ˜ì¹˜ì ìœ¼ë¡œ ë¶ˆì•ˆì •
-	// Inverse ì „ì— íŒë‹¨í•  ë•Œ ì¤‘ìš”í•œ í•¨ìˆ˜
+	// ÇöÀç Çà·ÄÀÇ Çà·Ä½Ä(Determinant)À» ±¸ÇÔ
+	// Determinant°¡ 0ÀÌ¸é ¿ªÇà·Ä  ¾øÀ½
+	// 0¿¡ ¸Å¿ì °¡±î¿ì¸é ¼öÄ¡ÀûÀ¸·Î ºÒ¾ÈÁ¤
+	// Inverse Àü¿¡ ÆÇ´ÜÇÒ ¶§ Áß¿äÇÑ ÇÔ¼ö
 	float Determinant() const noexcept
 	{
 		const DirectX::XMMATRIX XM = ToXMMatrix();
@@ -374,10 +372,10 @@ public:
 		return DirectX::XMVectorGetX(Det);
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì˜ ì—­í–‰ë ¬(Inverse Matrix)ì„ ë°˜í™˜í•¨
-	// ì—­í–‰ë ¬ì´ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ Identityë¥¼ ë°˜í™˜í•¨
-	// í˜„ì¬ëŠ” ì—­í–‰ë ¬ì´ ì—†ì„ ë•Œ Identityë¥¼ ë°˜í™˜/ëŒ€ì…í•˜ëŠ” ì •ì±…ì…ë‹ˆë‹¤.
-	// ë””ë²„ê¹… íˆ¬ëª…ì„±ì„ ë†’ì´ë ¤ë©´ ì›ë³¸ ìœ ì§€ + false ë°˜í™˜ ì •ì±…ë„ ê³ ë ¤í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+	// ÇöÀç Çà·ÄÀÇ ¿ªÇà·Ä(Inverse Matrix)À» ¹İÈ¯ÇÔ
+	// ¿ªÇà·ÄÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é Identity¸¦ ¹İÈ¯ÇÔ
+	// ÇöÀç´Â ¿ªÇà·ÄÀÌ ¾øÀ» ¶§ Identity¸¦ ¹İÈ¯/´ëÀÔÇÏ´Â Á¤Ã¥ÀÔ´Ï´Ù.
+	// µğ¹ö±ë Åõ¸í¼ºÀ» ³ôÀÌ·Á¸é ¿øº» À¯Áö + false ¹İÈ¯ Á¤Ã¥µµ °í·ÁÇÒ ¼ö ÀÖ½À´Ï´Ù.
 	FMatrix GetInverse(float Tolerance = 1.e-8f) const noexcept
 	{
 		const DirectX::XMMATRIX XM = ToXMMatrix();
@@ -388,7 +386,7 @@ public:
 		const float DeterminantValue = DirectX::XMVectorGetX(Det);
 		if (std::fabs(DeterminantValue) <= Tolerance)
 		{
-			// ì—­í–‰ë ¬ì´ ì—†ì„ ë•Œ ì›ë³¸ìœ¼ë¡œ ë°˜í™˜í•˜ëŠ” ì •ì±…ìœ¼ë¡œ ë³€ê²½ ê°€ëŠ¥
+			// ¿ªÇà·ÄÀÌ ¾øÀ» ¶§ ¿øº»À¸·Î ¹İÈ¯ÇÏ´Â Á¤Ã¥À¸·Î º¯°æ °¡´É
 #ifndef NDEBUG
 			assert("FMatrix::GetInverse() failed: matrix is singular or invalid.");
 #endif
@@ -398,10 +396,10 @@ public:
 		return FMatrix(Inv);
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì„ ì—­í–‰ë ¬ë¡œ ë³€í™˜í•¨
-	// ì—­í–‰ë ¬ì´ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ Identityë¡œ ì„¤ì •í•¨
-	// í˜„ì¬ëŠ” ì—­í–‰ë ¬ì´ ì—†ì„ ë•Œ Identityë¥¼ ë°˜í™˜/ëŒ€ì…í•˜ëŠ” ì •ì±…ì…ë‹ˆë‹¤.
-	// ë””ë²„ê¹… íˆ¬ëª…ì„±ì„ ë†’ì´ë ¤ë©´ ì›ë³¸ ìœ ì§€ + false ë°˜í™˜ ì •ì±…ë„ ê³ ë ¤í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+	// ÇöÀç Çà·ÄÀ» ¿ªÇà·Ä·Î º¯È¯ÇÔ
+	// ¿ªÇà·ÄÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é Identity·Î ¼³Á¤ÇÔ
+	// ÇöÀç´Â ¿ªÇà·ÄÀÌ ¾øÀ» ¶§ Identity¸¦ ¹İÈ¯/´ëÀÔÇÏ´Â Á¤Ã¥ÀÔ´Ï´Ù.
+	// µğ¹ö±ë Åõ¸í¼ºÀ» ³ôÀÌ·Á¸é ¿øº» À¯Áö + false ¹İÈ¯ Á¤Ã¥µµ °í·ÁÇÒ ¼ö ÀÖ½À´Ï´Ù.
 	[[nodiscard]] bool Inverse(float Tolerance = 1.e-8f) noexcept
 	{
 		const DirectX::XMMATRIX XM = ToXMMatrix();
@@ -412,7 +410,7 @@ public:
 		const float DeterminantValue = DirectX::XMVectorGetX(Det);
 		if (std::fabs(DeterminantValue) <= Tolerance)
 		{
-			// ì—­í–‰ë ¬ì´ ì—†ì„ ë•Œ ì›ë³¸ìœ¼ë¡œ ë°˜í™˜í•˜ëŠ” ì •ì±…ìœ¼ë¡œ ë³€ê²½ ê°€ëŠ¥
+			// ¿ªÇà·ÄÀÌ ¾øÀ» ¶§ ¿øº»À¸·Î ¹İÈ¯ÇÏ´Â Á¤Ã¥À¸·Î º¯°æ °¡´É
 			*this = Identity;
 			return false;
 		}
@@ -421,49 +419,49 @@ public:
 		return true;
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì´ ì—­í–‰ë ¬ì„ ê°€ì§ˆ ìˆ˜ ìˆëŠ”ì§€ í™•ì¸í•¨
+	// ÇöÀç Çà·ÄÀÌ ¿ªÇà·ÄÀ» °¡Áú ¼ö ÀÖ´ÂÁö È®ÀÎÇÔ
 	bool IsInvertible(float Tolerance = 1.e-8f) const noexcept
 	{
 		return std::fabs(Determinant()) > Tolerance;
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì— ìŠ¤ì¼€ì¼ì„ ì ìš©í•œ ìƒˆ í–‰ë ¬ì„ ë°˜í™˜í•¨
+	// ÇöÀç Çà·Ä¿¡ ½ºÄÉÀÏÀ» Àû¿ëÇÑ »õ Çà·ÄÀ» ¹İÈ¯ÇÔ
 	FMatrix ApplyScale(const FVector& Scale) const noexcept
 	{
 		return MakeScale(Scale) * *this;
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì— ê· ì¼ ìŠ¤ì¼€ì¼ì„ ì ìš©í•œ ìƒˆ í–‰ë ¬ì„ ë°˜í™˜í•¨
+	// ÇöÀç Çà·Ä¿¡ ±ÕÀÏ ½ºÄÉÀÏÀ» Àû¿ëÇÑ »õ Çà·ÄÀ» ¹İÈ¯ÇÔ
 	FMatrix ApplyScale(float Scale) const noexcept
 	{
 		return ApplyScale(FVector(Scale, Scale, Scale));
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì—ì„œ ìˆœìˆ˜ íšŒì „ í–‰ë ¬ì„ ë°˜í™˜í•¨
+	// ÇöÀç Çà·Ä¿¡¼­ ¼ø¼ö È¸Àü Çà·ÄÀ» ¹İÈ¯ÇÔ
 	FMatrix GetRotationMatrix(float Tolerance = 1.e-8f) const noexcept
 	{
 		return GetMatrixWithoutTranslation().GetMatrixWithoutScale(Tolerance);
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì˜ Forward ë°©í–¥ ë²¡í„°ë¥¼ ë°˜í™˜í•¨
+	// ÇöÀç Çà·ÄÀÇ Forward ¹æÇâ º¤ÅÍ¸¦ ¹İÈ¯ÇÔ
 	FVector GetForwardVector() const noexcept
 	{
 		return GetUnitAxis(EAxis::X);
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì˜ Right ë°©í–¥ ë²¡í„°ë¥¼ ë°˜í™˜í•¨
+	// ÇöÀç Çà·ÄÀÇ Right ¹æÇâ º¤ÅÍ¸¦ ¹İÈ¯ÇÔ
 	FVector GetRightVector() const noexcept
 	{
 		return GetUnitAxis(EAxis::Y);
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì˜ Up ë°©í–¥ ë²¡í„°ë¥¼ ë°˜í™˜í•¨
+	// ÇöÀç Çà·ÄÀÇ Up ¹æÇâ º¤ÅÍ¸¦ ¹İÈ¯ÇÔ
 	FVector GetUpVector() const noexcept
 	{
 		return GetUnitAxis(EAxis::Z);
 	}
 
-	// ì¶• ë²¡í„°ì™€ ìœ„ì¹˜ë¥¼ ì´ìš©í•˜ì—¬ í˜„ì¬ í–‰ë ¬ì„ ì„¤ì •í•¨
+	// Ãà º¤ÅÍ¿Í À§Ä¡¸¦ ÀÌ¿ëÇÏ¿© ÇöÀç Çà·ÄÀ» ¼³Á¤ÇÔ
 	void SetAxes(
 		const FVector& XAxis,
 		const FVector& YAxis,
@@ -476,17 +474,17 @@ public:
 		M[3][0] = Origin.X; M[3][1] = Origin.Y; M[3][2] = Origin.Z; M[3][3] = 1.f;
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì„ ìœ„ì¹˜, íšŒì „ í–‰ë ¬, ìŠ¤ì¼€ì¼ë¡œ ë¶„í•´í•¨
-	// ë¶„í•´ì— ì‹¤íŒ¨í•˜ë©´ falseë¥¼ ë°˜í™˜í•¨
+	// ÇöÀç Çà·ÄÀ» À§Ä¡, È¸Àü Çà·Ä, ½ºÄÉÀÏ·Î ºĞÇØÇÔ
+	// ºĞÇØ¿¡ ½ÇÆĞÇÏ¸é false¸¦ ¹İÈ¯ÇÔ
 	bool Decompose(FVector& OutTranslation, FMatrix& OutRotation, FVector& OutScale, float Tolerance = 1.e-8f) const noexcept
 	{
-		// 1ì°¨ ë²„ì „ì˜ í•¨ìˆ˜
-		// ë‹¤ìŒ ê²½ìš°ê¹Œì§€ ì™„ë²½í•˜ê²Œ ë‹¤ë£¨ì§€ ì•ŠìŒ
+		// 1Â÷ ¹öÀüÀÇ ÇÔ¼ö
+		// ´ÙÀ½ °æ¿ì±îÁö ¿Ïº®ÇÏ°Ô ´Ù·çÁö ¾ÊÀ½
 		// - negative scale
 		// - reflection
 		// - shear
-		// - ì¶•ì´ ì„œë¡œ ì™„ì „íˆ ì§êµí•˜ì§€ ì•Šì€ í–‰ë ¬
-		// ìˆ˜í•™ì ìœ¼ë¡œ ë³´ë“  4x4 í–‰ë ¬ì„ ì™„ë²½í•˜ê²Œ ë¶„í•´í•˜ëŠ” êµ¬í˜„ì€ ì•„ë‹˜.
+		// - ÃàÀÌ ¼­·Î ¿ÏÀüÈ÷ Á÷±³ÇÏÁö ¾ÊÀº Çà·Ä
+		// ¼öÇĞÀûÀ¸·Î º¸µç 4x4 Çà·ÄÀ» ¿Ïº®ÇÏ°Ô ºĞÇØÇÏ´Â ±¸ÇöÀº ¾Æ´Ô.
 		OutTranslation = GetOrigin();
 
 		const FVector XAxis = GetScaledAxis(EAxis::X);
@@ -511,19 +509,19 @@ public:
 		return true;
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì˜ ìœ„ì¹˜(Translation) ì„±ë¶„ì„ ë°˜í™˜í•¨
+	// ÇöÀç Çà·ÄÀÇ À§Ä¡(Translation) ¼ººĞÀ» ¹İÈ¯ÇÔ
 	FVector GetTranslation() const noexcept
 	{
 		return GetOrigin();
 	}
 
-	// í˜„ì¬ í–‰ë ¬ì˜ ìœ„ì¹˜(Translation) ì„±ë¶„ì„ ì„¤ì •í•¨
+	// ÇöÀç Çà·ÄÀÇ À§Ä¡(Translation) ¼ººĞÀ» ¼³Á¤ÇÔ
 	void SetTranslation(const FVector& Translation) noexcept
 	{
 		SetOrigin(Translation);
 	}
 
-	// ì´ë™(Translation) í–‰ë ¬ì„ ìƒì„±í•¨
+	// ÀÌµ¿(Translation) Çà·ÄÀ» »ı¼ºÇÔ
 	static FMatrix MakeTranslation(const FVector& Translation) noexcept
 	{
 		return FMatrix(
@@ -534,7 +532,7 @@ public:
 		);
 	}
 
-	// ìŠ¤ì¼€ì¼(Scale) í–‰ë ¬ì„ ìƒì„±í•¨
+	// ½ºÄÉÀÏ(Scale) Çà·ÄÀ» »ı¼ºÇÔ
 	static FMatrix MakeScale(const FVector& Scale) noexcept
 	{
 		return FMatrix(
@@ -545,8 +543,8 @@ public:
 		);
 	}
 
-	// Xì¶• ê¸°ì¤€ íšŒì „ í–‰ë ¬ì„ ìƒì„±í•¨
-	// AngleRadëŠ” ë¼ë””ì•ˆ ë‹¨ìœ„ ê°ë„ì„
+	// XÃà ±âÁØ È¸Àü Çà·ÄÀ» »ı¼ºÇÔ
+	// AngleRad´Â ¶óµğ¾È ´ÜÀ§ °¢µµÀÓ
 	static FMatrix MakeRotationX(float AngleRad) noexcept
 	{
 		const float CosAngle = std::cos(AngleRad);
@@ -560,8 +558,8 @@ public:
 		);
 	}
 
-	// Yì¶• ê¸°ì¤€ íšŒì „ í–‰ë ¬ì„ ìƒì„±í•¨
-	// AngleRadëŠ” ë¼ë””ì•ˆ ë‹¨ìœ„ ê°ë„ì„
+	// YÃà ±âÁØ È¸Àü Çà·ÄÀ» »ı¼ºÇÔ
+	// AngleRad´Â ¶óµğ¾È ´ÜÀ§ °¢µµÀÓ
 	static FMatrix MakeRotationY(float AngleRad) noexcept
 	{
 		const float CosAngle = std::cos(AngleRad);
@@ -575,8 +573,8 @@ public:
 		);
 	}
 
-	// Zì¶• ë°©í–¥ ë²¡í„°ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì§êµ ê¸°ì € í–‰ë ¬ì„ ìƒì„±í•¨
-	// ì´ ë°©í–¥ì„ Zì¶•(Up/Normal)ìœ¼ë¡œ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜ì„
+	// ZÃà ¹æÇâ º¤ÅÍ¸¦ ±âÁØÀ¸·Î Á÷±³ ±âÀú Çà·ÄÀ» »ı¼ºÇÔ
+	// ÀÌ ¹æÇâÀ» ZÃà(Up/Normal)À¸·Î »ç¿ëÇÏ´Â ÇÔ¼öÀÓ
 	static FMatrix MakeRotationZ(float AngleRad) noexcept
 	{
 		const float CosAngle = std::cos(AngleRad);
@@ -590,14 +588,14 @@ public:
 		);
 	}
 
-	// ë‹¨ì¼ ìŠ¤ì¹¼ë¼ ê°’ìœ¼ë¡œ ê· ì¼ ìŠ¤ì¼€ì¼ í–‰ë ¬ì„ ìƒì„±í•¨
+	// ´ÜÀÏ ½ºÄ®¶ó °ªÀ¸·Î ±ÕÀÏ ½ºÄÉÀÏ Çà·ÄÀ» »ı¼ºÇÔ
 	static FMatrix MakeScale(float Scale) noexcept
 	{
 		return MakeScale(FVector(Scale, Scale, Scale));
 	}
 
-	// Xì¶• ë°©í–¥ ë²¡í„°ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì§êµ ê¸°ì € í–‰ë ¬ì„ ìƒì„±í•¨
-	// ì´ ë°©í–¥ì´ ì•ìœ¼ë¡œ í–¥í•˜ëŠ” Xì¶•ì´ë‹¤. ë¼ê³  ì •í•˜ëŠ” í•¨ìˆ˜ì„
+	// XÃà ¹æÇâ º¤ÅÍ¸¦ ±âÁØÀ¸·Î Á÷±³ ±âÀú Çà·ÄÀ» »ı¼ºÇÔ
+	// ÀÌ ¹æÇâÀÌ ¾ÕÀ¸·Î ÇâÇÏ´Â XÃàÀÌ´Ù. ¶ó°í Á¤ÇÏ´Â ÇÔ¼öÀÓ
 	static FMatrix MakeFromX(const FVector& XAxis) noexcept
 	{
 		const FVector X = XAxis.GetSafeNormal();
@@ -620,8 +618,8 @@ public:
 		);
 	}
 
-	// Yì¶• ë°©í–¥ ë²¡í„°ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì§êµ ê¸°ì € í–‰ë ¬ì„ ìƒì„±í•¨
-	// ì´ ë°©í–¥ì´ ì•ìœ¼ë¡œ í–¥í•˜ëŠ” Yì¶•ì´ë‹¤. ë¼ê³  ì •í•˜ëŠ” í•¨ìˆ˜ì„
+	// YÃà ¹æÇâ º¤ÅÍ¸¦ ±âÁØÀ¸·Î Á÷±³ ±âÀú Çà·ÄÀ» »ı¼ºÇÔ
+	// ÀÌ ¹æÇâÀÌ ¾ÕÀ¸·Î ÇâÇÏ´Â YÃàÀÌ´Ù. ¶ó°í Á¤ÇÏ´Â ÇÔ¼öÀÓ
 	static FMatrix MakeFromY(const FVector& YAxis) noexcept
 	{
 		const FVector Y = YAxis.GetSafeNormal();
@@ -644,8 +642,8 @@ public:
 		);
 	}
 
-	// Zì¶• ë°©í–¥ ë²¡í„°ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì§êµ ê¸°ì € í–‰ë ¬ì„ ìƒì„±í•¨
-	// ì´ ë°©í–¥ì´ ì•ìœ¼ë¡œ í–¥í•˜ëŠ” Zì¶•ì´ë‹¤. ë¼ê³  ì •í•˜ëŠ” í•¨ìˆ˜ì„
+	// ZÃà ¹æÇâ º¤ÅÍ¸¦ ±âÁØÀ¸·Î Á÷±³ ±âÀú Çà·ÄÀ» »ı¼ºÇÔ
+	// ÀÌ ¹æÇâÀÌ ¾ÕÀ¸·Î ÇâÇÏ´Â ZÃàÀÌ´Ù. ¶ó°í Á¤ÇÏ´Â ÇÔ¼öÀÓ
 	static FMatrix MakeFromZ(const FVector& ZAxis) noexcept
 	{
 		const FVector Z = ZAxis.GetSafeNormal();
@@ -668,7 +666,7 @@ public:
 		);
 	}
 
-	// Eye ìœ„ì¹˜ì—ì„œ Target ìœ„ì¹˜ë¥¼ ë°”ë¼ë³´ëŠ” LookAt í–‰ë ¬ì„ ìƒì„±í•¨
+	// Eye À§Ä¡¿¡¼­ Target À§Ä¡¸¦ ¹Ù¶óº¸´Â LookAt Çà·ÄÀ» »ı¼ºÇÔ
 	static FMatrix MakeLookAt(const FVector& Eye, const FVector& Target, const FVector& Up = FVector::UpVector) noexcept
 	{
 		const FVector Forward = (Target - Eye).GetSafeNormal();
@@ -693,7 +691,7 @@ public:
 		);
 	}
 
-	// Left-Handed ê¸°ì¤€ ì›ê·¼ íˆ¬ì˜ í–‰ë ¬ì„ ìƒì„±í•¨
+	// Left-Handed ±âÁØ ¿ø±Ù Åõ¿µ Çà·ÄÀ» »ı¼ºÇÔ
 	static FMatrix MakePerspectiveFovLH(float FovYRad, float AspectRatio, float NearZ, float FarZ) noexcept
 	{
 		assert(AspectRatio != 0.f);
@@ -710,7 +708,7 @@ public:
 		);
 	}
 
-	// Left-Handed ê¸°ì¤€ ì§êµ íˆ¬ì˜ í–‰ë ¬ì„ ìƒì„±í•¨
+	// Left-Handed ±âÁØ Á÷±³ Åõ¿µ Çà·ÄÀ» »ı¼ºÇÔ
 	static FMatrix MakeOrthographicLH(float ViewWidth, float ViewHeight, float NearZ, float FarZ) noexcept
 	{
 		assert(ViewWidth != 0.f);
@@ -725,7 +723,7 @@ public:
 		);
 	}
 
-	// Left-Handed ê¸°ì¤€ View LookAt í–‰ë ¬ì„ ìƒì„±í•¨
+	// Left-Handed ±âÁØ View LookAt Çà·ÄÀ» »ı¼ºÇÔ
 	static FMatrix MakeViewLookAtLH(const FVector& Eye, const FVector& Target, const FVector& Up = FVector::UpVector) noexcept
 	{
 		const FVector Forward = (Target - Eye).GetSafeNormal();
@@ -753,7 +751,7 @@ public:
 		);
 	}
 
-	// ì§€ì •í•œ ìœ„ì¹˜ì—ì„œ ì¹´ë©”ë¼ë¥¼ ë°”ë¼ë³´ëŠ” Billboard í–‰ë ¬ì„ ìƒì„±í•¨
+	// ÁöÁ¤ÇÑ À§Ä¡¿¡¼­ Ä«¸Ş¶ó¸¦ ¹Ù¶óº¸´Â Billboard Çà·ÄÀ» »ı¼ºÇÔ
 	static FMatrix MakeBillboard(const FVector& Position, const FVector& CameraPosition, const FVector& Up = FVector::UpVector) noexcept
 	{
 		const FVector Forward = (CameraPosition - Position).GetSafeNormal();
@@ -778,8 +776,8 @@ public:
 		);
 	}
 
-	// ìœ„ì¹˜, íšŒì „ í–‰ë ¬, ìŠ¤ì¼€ì¼ì„ ì´ìš©í•˜ì—¬ ì›”ë“œ í–‰ë ¬ì„ ìƒì„±í•¨
-	// TODO : FRotator, FQuatë¥¼ ë§Œë“¤ë©´ ìˆ˜ì •í•´ì•¼í•¨.
+	// À§Ä¡, È¸Àü Çà·Ä, ½ºÄÉÀÏÀ» ÀÌ¿ëÇÏ¿© ¿ùµå Çà·ÄÀ» »ı¼ºÇÔ
+	// TODO : FRotator, FQuat¸¦ ¸¸µé¸é ¼öÁ¤ÇØ¾ßÇÔ.
 	static FMatrix MakeWorld(const FVector& Translation, const FMatrix& RotationMatrix, const FVector& Scale) noexcept
 	{
 		FMatrix Result = RotationMatrix;
@@ -804,7 +802,7 @@ public:
 		return Result;
 	}
 
-	// ìœ„ì¹˜(Translation), íšŒì „(Rotation), ìŠ¤ì¼€ì¼(Scale)ë¡œ í–‰ë ¬ì„ ìƒì„±í•¨
+	// À§Ä¡(Translation), È¸Àü(Rotation), ½ºÄÉÀÏ(Scale)·Î Çà·ÄÀ» »ı¼ºÇÔ
 	static FMatrix MakeTRS(const FVector& Translation, const FMatrix& RotationMatrix, const FVector& Scale) noexcept
 	{
 		return MakeWorld(Translation, RotationMatrix, Scale);
