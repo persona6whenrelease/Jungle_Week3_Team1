@@ -142,7 +142,7 @@ void USceneComponent::SetRelativeLocation(const FVector NewLocation)
 	SetUpdateFlag();
 }
 
-void USceneComponent::SetRelativeRotation(const FVector NewRotation)
+void USceneComponent::SetRelativeRotation(const FQuat NewRotation)
 {
 	RelativeRotation = NewRotation;
 	SetUpdateFlag();
@@ -226,22 +226,21 @@ void USceneComponent::Move(const FVector& delta) {
 }
 
 void USceneComponent::MoveLocal(const FVector& delta) {
-	FVector forward = GetForwardVector();
-	FVector right = GetRightVector();
-	FVector up = GetUpVector();
+	FVector ParentSpaceDelta = RelativeRotation.RotateVector(delta);
 
-	SetRelativeLocation(RelativeLocation
-		+ forward * delta.X
-		+ right * delta.Y
-		+ up * delta.Z);
+	SetRelativeLocation(RelativeLocation + ParentSpaceDelta);
 }
 
 void USceneComponent::Rotate(float dx, float dy) {
-	RelativeRotation.Z += dx;
-	RelativeRotation.Y += dy;
-	RelativeRotation.Y = Clamp(RelativeRotation.Y, -89.9f, 89.9f);
+	float RadYaw = dx * DEG_TO_RAD;
+	float RadPitch = dy * DEG_TO_RAD;
 
-	RelativeRotation.X = 0.0f;
+	FQuat DeltaYaw(FVector::UpVector, RadYaw);
+	FQuat DeltaPitch(FVector::RightVector, RadPitch);
+
+	FQuat NewRotation = DeltaYaw * RelativeRotation * DeltaPitch;
+
+	NewRotation.Normalize();
 
 	SetRelativeRotation(RelativeRotation);   // keeps RelativeTransform in sync
 }
@@ -249,5 +248,5 @@ void USceneComponent::Rotate(float dx, float dy) {
 //Temp
 FMatrix USceneComponent::GetRelativeMatrixTemp() const
 {
-	return FMatrix::MakeTRS(RelativeLocation, RelativeRotation, RelativeScale3D);
+	return FMatrix::MakeTRS(RelativeLocation, RelativeRotation.ToMatrix(), RelativeScale3D);
 }

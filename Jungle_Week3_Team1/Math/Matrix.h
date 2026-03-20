@@ -802,33 +802,9 @@ public:
 		return Result;
 	}
 
-	// Rotation 오일러 값.
-	static FMatrix MakeRotation(const FVector& RotationDegrees) noexcept
-	{
-		constexpr float DEG_TO_RAD = 3.14159265358979323846f / 180.f;
-
-		const float RadX = RotationDegrees.X * DEG_TO_RAD; // Roll
-		const float RadY = RotationDegrees.Y * DEG_TO_RAD; // Pitch
-		const float RadZ = RotationDegrees.Z * DEG_TO_RAD; // Yaw
-
-		const FMatrix RotX = MakeRotationX(RadX);
-		const FMatrix RotY = MakeRotationY(RadY);
-		const FMatrix RotZ = MakeRotationZ(RadZ);
-
-		// 회전 적용 순서 (DirectX Row-Major 기준: Roll -> Pitch -> Yaw)
-		return RotX * RotY * RotZ;
-	}
-
 	// 위치(Translation), 회전(Rotation), 스케일(Scale)로 행렬을 생성함
 	static FMatrix MakeTRS(const FVector& Translation, const FMatrix& RotationMatrix, const FVector& Scale) noexcept
 	{
-		return MakeWorld(Translation, RotationMatrix, Scale);
-	}
-
-	static FMatrix MakeTRS(const FVector& Translation, const FVector& Rotation, const FVector& Scale) noexcept
-	{
-		const FMatrix RotationMatrix = MakeRotation(Rotation);
-
 		return MakeWorld(Translation, RotationMatrix, Scale);
 	}
 };

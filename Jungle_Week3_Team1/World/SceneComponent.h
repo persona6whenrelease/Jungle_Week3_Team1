@@ -17,7 +17,7 @@ protected:
 
 public:
 	FVector RelativeLocation{};
-	FVector RelativeRotation{};
+	FQuat RelativeRotation{};
 	FVector RelativeScale3D{ 1.0f, 1.0f ,1.0f };
 
 protected:
@@ -38,13 +38,13 @@ public:
 	virtual void UpdateWorldMatrix();
 	void AddWorldOffset(const FVector& WorldDelta);
 	virtual void SetRelativeLocation(const FVector NewLocation);
-	virtual void SetRelativeRotation(const FVector NewRotation);
+	virtual void SetRelativeRotation(const FQuat NewRotation);
 	void SetRelativeScale(const FVector NewScale);
 	void SetUpdateFlag();
 	const FMatrix& GetWorldMatrix();
 	void SetWorldLocation(FVector NewWorldLocation);
 	FVector GetWorldLocation();
-	FVector GetRelativeRotation() { return RelativeRotation; }
+	FQuat GetRelativeRotation() { return RelativeRotation; }
 	FVector GetRelativeScale() { return RelativeScale3D; }
 	FVector GetForwardVector();
 	FVector GetUpVector();

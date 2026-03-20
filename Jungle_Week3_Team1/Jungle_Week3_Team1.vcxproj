@@ -142,6 +142,7 @@
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Math\Vector.cpp" />
     <ClCompile Include="World\ActorComponent.cpp" />
+    <ClCompile Include="World\Camera.cpp" />
     <ClCompile Include="World\PrimitiveComponent.cpp" />
     <ClCompile Include="World\SceneComponent.cpp" />
   </ItemGroup>
@@ -184,6 +185,7 @@
     <ClInclude Include="Types\StaticArray.h" />
     <ClInclude Include="Types\String.h" />
     <ClInclude Include="World\ActorComponent.h" />
+    <ClInclude Include="World\Camera.h" />
     <ClInclude Include="World\PrimitiveComponent.h" />
     <ClInclude Include="World\SceneComponent.h" />
   </ItemGroup>
