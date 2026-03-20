@@ -15,7 +15,7 @@
         }
 
 
-#define IMPLEMENT_CLASS(ClassName, ParentName)\
+#define IMPLEMENT_OBJECT(ClassName, ParentName)\
 UClass* ClassName::GetPrivateStaticClass()\
 {\
     static UClass ClassInfo = { \

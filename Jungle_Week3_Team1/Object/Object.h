@@ -20,8 +20,11 @@ public:
 		return false;
 	}
 
+	virtual void Release() {}
+
 public:
 	uint32 UUID = { 0 };
+	bool bPendingKill = false;
 };
 
 extern TArray<UObject*> GUObjectArray;
