@@ -163,8 +163,6 @@
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Object\ObjectBase.h" />
-    <ClInclude Include="Render\Render.h" />
-    <ClInclude Include="Render\Sphere.h" />
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="Math\Frustum.h" />
     <ClInclude Include="Math\MathUtility.h" />
