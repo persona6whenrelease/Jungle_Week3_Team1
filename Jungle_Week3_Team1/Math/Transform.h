@@ -1,6 +1,6 @@
 #pragma once
-#include "Math/Quat.h"
-#include "Math/Rotator.h"
+#include "Quat.h"
+#include "Rotator.h"
 
 struct FTransform
 {

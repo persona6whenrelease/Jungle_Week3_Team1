@@ -51,22 +51,22 @@
     <ClCompile Include="Object\Object.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Math\Frustum.cpp">
+    <ClCompile Include="Math\Frustum.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Math\Matrix.cpp">
+    <ClCompile Include="Math\Matrix.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Math\Quat.cpp">
+    <ClCompile Include="Math\Quat.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Math\Rotator.cpp">
+    <ClCompile Include="Math\Rotator.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Math\Transform.cpp">
+    <ClCompile Include="Math\Transform.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Math\Vector.cpp">
+    <ClCompile Include="Math\Vector.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,61 +116,61 @@
     <ClInclude Include="Object\Object.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Types\Array.h">
+    <ClInclude Include="Types\Array.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Types\CoreTypes.h">
+    <ClInclude Include="Types\CoreTypes.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Types\LinkedList.h">
+    <ClInclude Include="Types\LinkedList.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Types\Map.h">
+    <ClInclude Include="Types\Map.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Types\ObjectPtr.h">
+    <ClInclude Include="Types\ObjectPtr.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Types\Pair.h">
+    <ClInclude Include="Types\Pair.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Types\Queue.h">
+    <ClInclude Include="Types\Queue.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Types\Set.h">
+    <ClInclude Include="Types\Set.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Types\StaticArray.h">
+    <ClInclude Include="Types\StaticArray.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Types\String.h">
+    <ClInclude Include="Types\String.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CoreMinimal.h">
+    <ClInclude Include="CoreMinimal.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Math\Frustum.h">
+    <ClInclude Include="Math\Frustum.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Math\MathUtility.h">
+    <ClInclude Include="Math\MathUtility.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Math\Matrix.h">
+    <ClInclude Include="Math\Matrix.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Math\Quat.h">
+    <ClInclude Include="Math\Quat.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Math\Rotator.h">
+    <ClInclude Include="Math\Rotator.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Math\Transform.h">
+    <ClInclude Include="Math\Transform.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Math\Vector.h">
+    <ClInclude Include="Math\Vector.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Math\Vector4.h">
+    <ClInclude Include="Math\Vector4.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

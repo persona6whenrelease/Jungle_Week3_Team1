@@ -1,7 +1,7 @@
-#include "Math/Quat.h"
+#include "Quat.h"
 
-#include "Math/MathUtility.h"
-#include "Math/Rotator.h"
+#include "MathUtility.h"
+#include "Rotator.h"
 
 #include <algorithm>
 #include <cassert>

@@ -1,5 +1,5 @@
 #pragma once
-#include "Types/Map.h"
+#include "Map.h"
 #include <cstdint>
 #include <type_traits>
 

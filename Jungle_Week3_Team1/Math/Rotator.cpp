@@ -1,8 +1,8 @@
-#include "Math/Rotator.h"
+#include "Rotator.h"
 
-#include "Math/MathUtility.h"
-#include "Math/Matrix.h"
-#include "Math/Quat.h"
+#include "MathUtility.h"
+#include "Matrix.h"
+#include "Quat.h"
 
 #include <cassert>
 #include <cmath>

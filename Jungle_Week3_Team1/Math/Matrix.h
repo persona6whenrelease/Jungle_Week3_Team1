@@ -1,6 +1,6 @@
 #pragma once
-#include "Math/Vector.h"
-#include "Math/Vector4.h"
+#include "Vector.h"
+#include "Vector4.h"
 
 enum class EAxis : uint8_t
 {

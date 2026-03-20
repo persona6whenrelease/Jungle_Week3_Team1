@@ -102,8 +102,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\jungle\source\repos\Jungle_Week3_Team1\Jungle_Week3_Team1\ImGui;C:\Users\jungle\source\repos\Jungle_Week3_Team1\Jungle_Week3_Team1\Object;C:\Users\jungle\source\repos\Jungle_Week3_Team1\Jungle_Week3_Team1\Render;C:\Users\jungle\source\repos\Jungle_Week3_Team1\Jungle_Week3_Team1\Source;C:\Users\jungle\source\repos\Jungle_Week3_Team1\Jungle_Week3_Team1\World;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -134,12 +134,12 @@
     <ClCompile Include="ImGui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object\Object.cpp" />
-    <ClCompile Include="Source\Math\Frustum.cpp" />
-    <ClCompile Include="Source\Math\Matrix.cpp" />
-    <ClCompile Include="Source\Math\Quat.cpp" />
-    <ClCompile Include="Source\Math\Rotator.cpp" />
-    <ClCompile Include="Source\Math\Transform.cpp" />
-    <ClCompile Include="Source\Math\Vector.cpp" />
+    <ClCompile Include="Math\Frustum.cpp" />
+    <ClCompile Include="Math\Matrix.cpp" />
+    <ClCompile Include="Math\Quat.cpp" />
+    <ClCompile Include="Math\Rotator.cpp" />
+    <ClCompile Include="Math\Transform.cpp" />
+    <ClCompile Include="Math\Vector.cpp" />
     <ClCompile Include="World\ActorComponent.cpp" />
     <ClCompile Include="World\PrimitiveComponent.cpp" />
     <ClCompile Include="World\SceneComponent.cpp" />
@@ -161,25 +161,25 @@
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Render\Render.h" />
     <ClInclude Include="Render\Sphere.h" />
-    <ClInclude Include="Source\CoreMinimal.h" />
-    <ClInclude Include="Source\Math\Frustum.h" />
-    <ClInclude Include="Source\Math\MathUtility.h" />
-    <ClInclude Include="Source\Math\Matrix.h" />
-    <ClInclude Include="Source\Math\Quat.h" />
-    <ClInclude Include="Source\Math\Rotator.h" />
-    <ClInclude Include="Source\Math\Transform.h" />
-    <ClInclude Include="Source\Math\Vector.h" />
-    <ClInclude Include="Source\Math\Vector4.h" />
-    <ClInclude Include="Source\Types\Array.h" />
-    <ClInclude Include="Source\Types\CoreTypes.h" />
-    <ClInclude Include="Source\Types\LinkedList.h" />
-    <ClInclude Include="Source\Types\Map.h" />
-    <ClInclude Include="Source\Types\ObjectPtr.h" />
-    <ClInclude Include="Source\Types\Pair.h" />
-    <ClInclude Include="Source\Types\Queue.h" />
-    <ClInclude Include="Source\Types\Set.h" />
-    <ClInclude Include="Source\Types\StaticArray.h" />
-    <ClInclude Include="Source\Types\String.h" />
+    <ClInclude Include="CoreMinimal.h" />
+    <ClInclude Include="Math\Frustum.h" />
+    <ClInclude Include="Math\MathUtility.h" />
+    <ClInclude Include="Math\Matrix.h" />
+    <ClInclude Include="Math\Quat.h" />
+    <ClInclude Include="Math\Rotator.h" />
+    <ClInclude Include="Math\Transform.h" />
+    <ClInclude Include="Math\Vector.h" />
+    <ClInclude Include="Math\Vector4.h" />
+    <ClInclude Include="Types\Array.h" />
+    <ClInclude Include="Types\CoreTypes.h" />
+    <ClInclude Include="Types\LinkedList.h" />
+    <ClInclude Include="Types\Map.h" />
+    <ClInclude Include="Types\ObjectPtr.h" />
+    <ClInclude Include="Types\Pair.h" />
+    <ClInclude Include="Types\Queue.h" />
+    <ClInclude Include="Types\Set.h" />
+    <ClInclude Include="Types\StaticArray.h" />
+    <ClInclude Include="Types\String.h" />
     <ClInclude Include="World\ActorComponent.h" />
     <ClInclude Include="World\PrimitiveComponent.h" />
     <ClInclude Include="World\SceneComponent.h" />
