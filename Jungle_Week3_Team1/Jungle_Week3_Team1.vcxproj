@@ -140,6 +140,7 @@
     <ClCompile Include="Math\Rotator.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Math\Vector.cpp" />
+    <ClCompile Include="Object\ObjectFactory.cpp" />
     <ClCompile Include="World\ActorComponent.cpp" />
     <ClCompile Include="World\PrimitiveComponent.cpp" />
     <ClCompile Include="World\SceneComponent.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Object\ObjectBase.h" />
+    <ClInclude Include="Object\ObjectFactory.h" />
     <ClInclude Include="Render\Render.h" />
     <ClInclude Include="Render\Sphere.h" />
     <ClInclude Include="CoreMinimal.h" />
