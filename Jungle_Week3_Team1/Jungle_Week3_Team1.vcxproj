@@ -140,6 +140,9 @@
     <ClCompile Include="Math\Rotator.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Math\Vector.cpp" />
+    <ClCompile Include="Source\Scene\Scene.cpp" />
+    <ClCompile Include="Source\Scene\SceneManager.cpp" />
+    <ClCompile Include="Source\Scene\소스.cpp" />
     <ClCompile Include="World\ActorComponent.cpp" />
     <ClCompile Include="World\PrimitiveComponent.cpp" />
     <ClCompile Include="World\SceneComponent.cpp" />
@@ -170,6 +173,8 @@
     <ClInclude Include="Math\Transform.h" />
     <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Math\Vector4.h" />
+    <ClInclude Include="Source\Scene\Scene.h" />
+    <ClInclude Include="Source\Scene\SceneManager.h" />
     <ClInclude Include="Types\Array.h" />
     <ClInclude Include="Types\CoreTypes.h" />
     <ClInclude Include="Types\LinkedList.h" />
