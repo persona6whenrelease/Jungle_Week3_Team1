@@ -15,20 +15,6 @@
         }
 
 
-
-#define IMPLEMENT_BASE_CLASS(ClassName)\
-UClass* ClassName::GetPrivateStaticClass()\
-{\
-    static UClass ClassInfo = { \
-           #ClassName,\
-           sizeof(ClassName),\
-           nullptr\
-    }; \
-    return &ClassInfo; \
-}
-
-
-
 #define IMPLEMENT_CLASS(ClassName, ParentName)\
 UClass* ClassName::GetPrivateStaticClass()\
 {\
