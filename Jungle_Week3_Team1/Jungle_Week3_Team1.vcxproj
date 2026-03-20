@@ -133,6 +133,7 @@
     <ClCompile Include="ImGui\imgui_tables.cpp" />
     <ClCompile Include="ImGui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Math\Utils.cpp" />
     <ClCompile Include="Object\Object.cpp" />
     <ClCompile Include="Math\Frustum.cpp" />
     <ClCompile Include="Math\Matrix.cpp" />
@@ -140,7 +141,9 @@
     <ClCompile Include="Math\Rotator.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Math\Vector.cpp" />
+    <ClCompile Include="System\InputSystem.cpp" />
     <ClCompile Include="World\ActorComponent.cpp" />
+    <ClCompile Include="World\Camera.cpp" />
     <ClCompile Include="World\PrimitiveComponent.cpp" />
     <ClCompile Include="World\SceneComponent.cpp" />
   </ItemGroup>
@@ -158,6 +161,7 @@
     <ClInclude Include="ImGui\imstb_rectpack.h" />
     <ClInclude Include="ImGui\imstb_textedit.h" />
     <ClInclude Include="ImGui\imstb_truetype.h" />
+    <ClInclude Include="Math\Utils.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Object\ObjectBase.h" />
@@ -172,6 +176,7 @@
     <ClInclude Include="Math\Transform.h" />
     <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Math\Vector4.h" />
+    <ClInclude Include="System\InputSystem.h" />
     <ClInclude Include="Types\Array.h" />
     <ClInclude Include="Types\CoreTypes.h" />
     <ClInclude Include="Types\LinkedList.h" />
@@ -179,11 +184,13 @@
     <ClInclude Include="Types\ObjectPtr.h" />
     <ClInclude Include="Types\Pair.h" />
     <ClInclude Include="Types\Queue.h" />
+    <ClInclude Include="Types\RayTypes.h" />
     <ClInclude Include="Types\Set.h" />
     <ClInclude Include="Types\StaticArray.h" />
     <ClInclude Include="Types\String.h" />
     <ClInclude Include="Types\Class.h" />
     <ClInclude Include="World\ActorComponent.h" />
+    <ClInclude Include="World\Camera.h" />
     <ClInclude Include="World\PrimitiveComponent.h" />
     <ClInclude Include="World\SceneComponent.h" />
   </ItemGroup>
