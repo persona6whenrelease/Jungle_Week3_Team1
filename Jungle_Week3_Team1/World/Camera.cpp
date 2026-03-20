@@ -1,5 +1,4 @@
 #include "Camera.h"
-#include <cmath>
 #include "SceneComponent.h"
 
 void UCamera::SetRelativeLocation(const FVector newlocation) {

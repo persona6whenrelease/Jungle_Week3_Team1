@@ -69,7 +69,7 @@ private:
 	//void RebuildAxis();
 	void RebuildView();
 	void RebuildProjection();
-	void SetRelativeLocation(const FQuad newlocaiton) override;
+	void SetRelativeLocation(const FVector newlocaiton) override;
 
 	void BuildLookAtRotation();
 

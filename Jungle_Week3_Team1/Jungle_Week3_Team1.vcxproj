@@ -141,6 +141,7 @@
     <ClCompile Include="Math\Rotator.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Math\Vector.cpp" />
+    <ClCompile Include="System\InputSystem.cpp" />
     <ClCompile Include="World\ActorComponent.cpp" />
     <ClCompile Include="World\Camera.cpp" />
     <ClCompile Include="World\PrimitiveComponent.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Math\Transform.h" />
     <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Math\Vector4.h" />
+    <ClInclude Include="System\InputSystem.h" />
     <ClInclude Include="Types\Array.h" />
     <ClInclude Include="Types\CoreTypes.h" />
     <ClInclude Include="Types\LinkedList.h" />
