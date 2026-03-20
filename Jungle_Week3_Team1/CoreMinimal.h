@@ -17,6 +17,7 @@
 
 #include "Types/Class.h"
 #include "Macro.h"
+#include "Object/ObjectBase.h"
 
 
 // Type redefine
