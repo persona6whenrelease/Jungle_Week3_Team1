@@ -15,7 +15,8 @@
 #include "Math/Transform.h"
 
 
-
+#include "Types/Class.h"
+#include "Macro.h"
 
 
 // Type redefine
