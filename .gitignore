@@ -149,6 +149,11 @@ Release/
 *.pdb
 *.obj
 
+# 개인 설정 파일 (선택)
+*.user
+*.suo
+.vs/
+
 
 
 # Chutzpah Test files
