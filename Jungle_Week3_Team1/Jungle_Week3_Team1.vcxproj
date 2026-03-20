@@ -142,7 +142,6 @@
     <ClCompile Include="Math\Vector.cpp" />
     <ClCompile Include="Source\Scene\Scene.cpp" />
     <ClCompile Include="Source\Scene\SceneManager.cpp" />
-    <ClCompile Include="Source\Scene\소스.cpp" />
     <ClCompile Include="World\ActorComponent.cpp" />
     <ClCompile Include="World\PrimitiveComponent.cpp" />
     <ClCompile Include="World\SceneComponent.cpp" />
