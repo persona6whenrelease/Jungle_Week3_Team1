@@ -13,7 +13,6 @@ class SceneManager
 
 public:
 
-
 	// 
 	void SaveSceneFIle(const FString& InFileName, Scene* InAddress);
 
