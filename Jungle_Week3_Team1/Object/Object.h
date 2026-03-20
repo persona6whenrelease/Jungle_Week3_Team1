@@ -1,5 +1,6 @@
 #pragma once
 #include "../CoreMinimal.h"
+#include "ObjectBase.h"
 
 class UObject : public UObjectBase
 {

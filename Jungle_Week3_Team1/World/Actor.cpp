@@ -1,6 +1,6 @@
 #include "Actor.h"
 
-IMPLEMENT_OBJECT(AActor, UObject)
+//IMPLEMENT_OBJECT(AActor, UObject)
 
 void AActor::Tick(float DeltaTime)
 {

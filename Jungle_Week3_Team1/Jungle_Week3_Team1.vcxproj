@@ -132,6 +132,7 @@
     <ClCompile Include="ImGui\imgui_impl_win32.cpp" />
     <ClCompile Include="ImGui\imgui_tables.cpp" />
     <ClCompile Include="ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="Macro.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object\Object.cpp" />
     <ClCompile Include="Math\Frustum.cpp" />
@@ -140,9 +141,12 @@
     <ClCompile Include="Math\Rotator.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Math\Vector.cpp" />
+    <ClCompile Include="Object\ObjectFactory.cpp" />
+    <ClCompile Include="Render\Renderer.cpp" />
     <ClCompile Include="Source\Scene\Scene.cpp" />
     <ClCompile Include="Source\Scene\SceneManager.cpp" />
     <ClCompile Include="World\ActorComponent.cpp" />
+    <ClCompile Include="World\Mesh\Meshmanager.cpp" />
     <ClCompile Include="World\PrimitiveComponent.cpp" />
     <ClCompile Include="World\SceneComponent.cpp" />
   </ItemGroup>
@@ -172,6 +176,9 @@
     <ClInclude Include="Math\Transform.h" />
     <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Math\Vector4.h" />
+    <ClInclude Include="Object\ObjectFactory.h" />
+    <ClInclude Include="Render\Renderer.h" />
+    <ClInclude Include="Render\RenderTypes.h" />
     <ClInclude Include="Source\Scene\Scene.h" />
     <ClInclude Include="Source\Scene\SceneManager.h" />
     <ClInclude Include="Types\Array.h" />
@@ -186,6 +193,7 @@
     <ClInclude Include="Types\String.h" />
     <ClInclude Include="Types\Class.h" />
     <ClInclude Include="World\ActorComponent.h" />
+    <ClInclude Include="World\Mesh\MeshManager.h" />
     <ClInclude Include="World\PrimitiveComponent.h" />
     <ClInclude Include="World\SceneComponent.h" />
   </ItemGroup>

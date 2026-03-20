@@ -10,7 +10,7 @@ class UScene;
 
 class AActor : public UObject
 {
-	DECLARE_OBJECT(AActor, UObject)
+	//DECLARE_OBJECT(AActor, UObject)
 
 public:
 	AActor() = default;

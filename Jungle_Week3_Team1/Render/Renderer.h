@@ -8,7 +8,7 @@
 #include <unordered_map>
 
 // 프로젝트 공용 타입
-#include "CoreMinimal.h"   // FMatrix, FVector, FVector4, FQuat ...
+#include "../CoreMinimal.h"   // FMatrix, FVector, FVector4, FQuat ...
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")

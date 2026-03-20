@@ -1,11 +1,10 @@
 #pragma once
-#include "../CoreMinimal.h"
 
 class UObjectBase
 {
 
 public:
-	virtual UClass* GetClass() const
+	virtual UClass* GetClass() const	
 	{
 		return nullptr;
 	}

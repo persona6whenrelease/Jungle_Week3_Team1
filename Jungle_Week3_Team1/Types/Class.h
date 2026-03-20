@@ -1,5 +1,5 @@
 #pragma once
-#include "../CoreMinimal.h"
+#include "../Types/String.h"
 
 class UClass
 {

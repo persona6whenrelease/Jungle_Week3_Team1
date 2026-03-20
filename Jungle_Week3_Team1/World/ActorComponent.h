@@ -6,8 +6,8 @@ class AActor;
 
 class UActorComponent : public UObject
 {
-	DECLARE_OBJECT(UActorComponent, UObject)
 	friend class AActor;
+	DECLARE_OBJECT(UActorComponent, UObject)
 
 protected:
 	virtual void TickComponent(float DeltaTime) {};
