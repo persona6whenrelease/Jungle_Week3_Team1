@@ -1,9 +1,14 @@
 #pragma once
-
+#include "../CoreMinimal.h"
 #include "../Object/Object.h"
+
+class AActor;
 
 class UActorComponent : public UObject
 {
+	DECLARE_OBJECT(UActorComponent, UObject)
+	friend class AActor;
+
 protected:
 	virtual void TickComponent(float DeltaTime) {};
 	// AActor* OwningActor = nullptr;
@@ -13,7 +18,17 @@ private:
 	bool bAutoActivate = true;
 	bool bCanEverTick = true;
 
+	AActor* Owner = nullptr;
+
 public:
+	AActor* GetOwner() const { return Owner; }
+
+	template<class T>
+	T* GetOwner() const
+	{
+		return dynamic_cast<T*>(GetOwner());
+	}
+
 	virtual void BeginPlay();
 	virtual void EndPlay() {};
 
@@ -27,8 +42,5 @@ public:
 
 
 	inline bool IsActive() { return bIsActive; }
-
-	/*void SetOwningActor(AActor* Actor) { OwningActor = Actor; }
-	AActor* GetOwningActor() const { return OwningActor; }*/
 };
 

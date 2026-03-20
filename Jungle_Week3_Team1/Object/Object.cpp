@@ -1,6 +1,6 @@
 #include "Object.h"
 
-IMPLEMENT_CLASS(UObject, UObjectBase)
+IMPLEMENT_OBJECT(UObject, UObjectBase)
 
 
 TArray<UObject*> GUObjectArray;
