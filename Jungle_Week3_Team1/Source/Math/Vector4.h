@@ -1,8 +1,6 @@
 #pragma once
-
-#include "EngineAPI.h"
 #include <cmath>
-struct ENGINE_API FVector4
+struct FVector4
 {
     float X = 0.0f;
     float Y = 0.0f;
