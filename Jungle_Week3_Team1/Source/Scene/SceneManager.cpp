@@ -40,6 +40,7 @@ Scene* SceneManager::LoadSceneFile(const FString& InFileName)
 	
 }
 
+//todo fix
 void SceneManager::SaveSceneInfoToFile(const FString& InFileName, Scene* InAddress)
 {
 	Json SaveFile = {};
@@ -47,7 +48,7 @@ void SceneManager::SaveSceneInfoToFile(const FString& InFileName, Scene* InAddre
 	SaveFile["Primitives"] = {};
 
 	const TMap<uint32, AActor*>& AActorMap = InAddress->GetAActorMap();
-	int32 Index = 0;
+	int32 Index = nextuuid;
 	for (const auto& IT : AActorMap)
 	{
 		Json Primitive = {};
