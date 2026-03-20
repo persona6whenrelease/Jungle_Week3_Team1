@@ -142,6 +142,15 @@ StyleCopReport.xml
 *.svclog
 *.scc
 
+x64/
+Debug/
+Release/
+*.idb
+*.pdb
+*.obj
+
+
+
 # Chutzpah Test files
 _Chutzpah*
 
