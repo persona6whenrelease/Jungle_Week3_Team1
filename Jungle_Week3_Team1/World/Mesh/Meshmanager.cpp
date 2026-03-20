@@ -1,10 +1,6 @@
 #include "MeshManager.h"
 #include "../../Math/Utils.h"
 
-#include <fstream>
-#include <iostream>
-#include <sstream>
-
 FMeshData FMeshManager::CubeMeshData;
 FMeshData FMeshManager::PlaneMeshData;
 FMeshData FMeshManager::SphereMeshData;
@@ -51,7 +47,7 @@ void FMeshManager::Initialize()
         CreateRotationGizmo();
     }
 
-    if (AxisMeshData.Vertices.empty())
+    /*if (AxisMeshData.Vertices.empty())
     {
         CreateAxis();
     }
@@ -64,7 +60,7 @@ void FMeshManager::Initialize()
     if (MouseOverlayMeshData.Vertices.empty())
     {
         CreateMouseOverlay();
-    }
+    }*/
 
     bIsInitialized = true;
 }
@@ -252,7 +248,7 @@ void FMeshManager::CreatePlane()
 
 void FMeshManager::CreateTranslationGizmo()
 {
-	TArray<FVertex>& vertices = TranslationGizmoMeshData.Vertices;
+	/*TArray<FVertex>& vertices = TranslationGizmoMeshData.Vertices;
 	TArray<uint32>& indices = TranslationGizmoMeshData.Indices;
 
 	vertices.clear();
@@ -311,12 +307,12 @@ void FMeshManager::CreateTranslationGizmo()
 
 		// ¸Ó¸® ¿·¸é (Cone Tip)
 		OutIndices.push_back(curr + 2); OutIndices.push_back(next + 2); OutIndices.push_back(tipIndex);
-	}
+	}*/
 }
 
 void FMeshManager::CreateRotationGizmo()
 {
-    TArray<FVertex>& vertices = RotationGizmoMeshData.Vertices;
+    /*TArray<FVertex>& vertices = RotationGizmoMeshData.Vertices;
     TArray<uint32>& indices = RotationGizmoMeshData.Indices;
 
     vertices.clear();
@@ -382,12 +378,12 @@ void FMeshManager::CreateRotationGizmo()
                 indices.push_back(i0); indices.push_back(i2); indices.push_back(i3);
             }
         }
-    }
+    }*/
 }
 
 void FMeshManager::CreateScaleGizmo()
 {
-    TArray<FVertex>& vertices = ScaleGizmoMeshData.Vertices;
+    /*TArray<FVertex>& vertices = ScaleGizmoMeshData.Vertices;
     TArray<uint32>& indices = ScaleGizmoMeshData.Indices;
 
     vertices.clear();
@@ -436,5 +432,5 @@ void FMeshManager::CreateScaleGizmo()
 
         float boxSizeHalf = BoxSize;
         AddBox(dirs[i] * LineLength, FVector(boxSizeHalf, boxSizeHalf, boxSizeHalf), colors[i], i);
-    }
+    }*/
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Types/VertexTypes.h"
+#include "../../Types/VertexTypes.h"
 
 class FMeshManager
 {
